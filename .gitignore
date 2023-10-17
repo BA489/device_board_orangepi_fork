@@ -1,0 +1,13 @@
+*.mod.c
+*.mod
+*.o
+.*.cmd
+*.ko
+*.a
+*.o
+*.o.*
+*.order
+*.order.cmd
+*.builtin
+*.a.*
+tags

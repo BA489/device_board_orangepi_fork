@@ -1,0 +1,6 @@
+# fstab file.
+#<src>                                                  <mnt_point> <type>    <mnt_flags and options>                              <fs_mgr_flags>
+/dev/block/platform/fe2e0000.mmc/by-name/sys_prod             /sys_prod         ext4     ro,barrier=1  wait
+/dev/block/platform/fe2e0000.mmc/by-name/chip_prod            /chip_prod        ext4     ro,barrier=1  wait
+/dev/block/platform/fe2e0000.mmc/by-name/misc                 /misc             none     none wait,required
+/dev/block/platform/fe2e0000.mmc/by-name/userdata             /data             f2fs     discard,noatime,nosuid,nodev,fscrypt=2:aes-256-cts:aes-256-xts  wait,check,fileencryption=software,quota
