@@ -19,33 +19,26 @@ ohos_prebuilt_etc("bootanimation-1920x1080") {
   install_enable = true
 }
 
-ohos_prebuilt_etc("window_manager_config") {
-  source = "config/window_manager_config.xml"
-  install_enable = false
+ohos_prebuilt_executable("modetest") {
+  source = "tools/bin/modetest"
+  module_install_dir = "bin"
+  install_images = [ "vendor" ]
   part_name = "rockchip_products"
-  relative_install_dir = "window/resources"
+  install_enable = true
 }
 
-ohos_prebuilt_etc("display_manager_config") {
-  source = "config/display_manager_config.xml"
-  install_enable = true
+ohos_prebuilt_executable("busybox") {
+  source = "tools/bin/busybox"
+  module_install_dir = "bin"
+  install_images = [ "vendor" ]
   part_name = "rockchip_products"
-  relative_install_dir = "window/resources"
-}
-
-ohos_prebuilt_etc("bootanimation_custom_config") {
-  source = "config/bootanimation_custom_config.json"
-  relative_install_dir = "bootanimation"
   install_enable = true
-  install_images = [ sys_prod_base_dir ]
-  part_name = "rockchip_products"
 }
 
 group("resources") {
   deps = [
     ":bootanimation-1920x1080",
-    ":window_manager_config",
-    ":display_manager_config",
-    ":bootanimation_custom_config",
+    ":modetest",
+    ":busybox",
   ]
 }
