@@ -1,0 +1,13 @@
+{
+    "subsystem": "rockchip_products",
+    "parts": {
+        "rockchip_products": {
+            "module_list": [
+                "//vendor/orangepi/${product_name}/bluetooth:libbt_vendor",
+                "//vendor/orangepi/${product_name}/bluetooth:BCM4362A2.hcd",
+                "//device/board/orangepi/${device_name}/camera/vdi_impl/v4l2:camera_board_vdi_impl",
+                "//device/board/orangepi/${product_name}:orangepi_group"
+            ]
+        }
+    }
+}
