@@ -14,9 +14,36 @@
 import("//build/ohos.gni")
 import("device.gni")
 
+ohos_executable("vbltest") {
+  sources = [
+    "//third_party/libdrm/tests/vbltest/vbltest.c",
+    "//third_party/libdrm/tests/util/format.c",
+    "//third_party/libdrm/tests/util/kms.c",
+    "//third_party/libdrm/tests/util/pattern.c",
+  ]
+
+  cflags_c = [
+    "-Wno-unused-variable",
+  ]
+
+  include_dirs = [
+    "//third_party/libdrm/tests",
+    "//third_party/libdrm/tests/util",
+  ]
+
+  deps = [
+    "//third_party/libdrm:libdrm",
+  ]
+
+  install_images = [ "system" ]
+  install_enable = true
+  part_name = "rockchip_products"
+}
+
 print("orangepi_group in")
 group("orangepi_group") {
   deps = [
+    ":vbltest",
     "cfg:init_configs",
     "distributedhardware:distributedhardware",
     "hardware:hardware",
