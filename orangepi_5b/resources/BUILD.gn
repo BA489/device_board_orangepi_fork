@@ -35,6 +35,14 @@ ohos_prebuilt_executable("busybox") {
   install_enable = true
 }
 
+ohos_prebuilt_etc("browser_hap") {
+  source = "hap/Browser.hap"
+  module_install_dir = "app/org.ohos.browser.cm"
+  install_enable = true
+  part_name = "rockchip_products"
+  subsystem_name = "applications"
+}
+
 ohos_prebuilt_etc("launcher_hap") {
   source = "hap/Launcher.hap"
   module_install_dir = "app/com.ohos.launcher"
@@ -49,16 +57,15 @@ ohos_prebuilt_etc("launcher_settings_hap") {
   subsystem_name = "applications"
 }
 
-ohos_prebuilt_etc("browser_hap") {
-  source = "hap/Browser.hap"
-  module_install_dir = "app/org.ohos.browser.cm"
-  install_enable = true
+ohos_prebuilt_etc("settings_hap") {
+  source = "hap/Settings.hap"
+  module_install_dir = "app/com.ohos.settings"
   part_name = "rockchip_products"
   subsystem_name = "applications"
 }
 
 ohos_prebuilt_etc("f_oh_hap") {
-  source = "hap/F-OH-1.3.3.hap"
+  source = "hap/F-OH-1.3.4.hap"
   module_install_dir = "app/org.ohosdev.foh"
   install_enable = true
   part_name = "rockchip_products"
@@ -73,15 +80,40 @@ ohos_prebuilt_etc("ndk_opengl_hap") {
   subsystem_name = "applications"
 }
 
+ohos_prebuilt_etc("appstore_hap") {
+  source = "hap/Appstore/appstore.hap"
+  module_install_dir = "app/com.xunlong.appstore"
+  part_name = "rockchip_products"
+  subsystem_name = "applications"
+}
+
+ohos_prebuilt_etc("browser_opi_hap") {
+  source = "hap/Browser/browser.hap"
+  module_install_dir = "app/com.xunlong.browser"
+  part_name = "rockchip_products"
+  subsystem_name = "applications"
+}
+
+ohos_prebuilt_etc("filemanager_hap") {
+  source = "hap/Filemanager/filemanager.hap"
+  module_install_dir = "app/com.xunlong.filemanager"
+  part_name = "rockchip_products"
+  subsystem_name = "applications"
+}
+
 group("resources") {
   deps = [
     ":bootanimation-1920x1080",
     ":modetest",
     ":busybox",
-    ":launcher_hap",
-    ":launcher_settings_hap",
     ":browser_hap",
+    #":launcher_hap",
+    #":launcher_settings_hap",
+    ":settings_hap",
     ":f_oh_hap",
     ":ndk_opengl_hap",
+    ":appstore_hap",
+    ":browser_opi_hap",
+    ":filemanager_hap",
   ]
 }
