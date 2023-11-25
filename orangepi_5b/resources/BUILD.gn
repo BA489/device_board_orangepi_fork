@@ -101,19 +101,27 @@ ohos_prebuilt_etc("filemanager_hap") {
   subsystem_name = "applications"
 }
 
+ohos_prebuilt_etc("insight_hap") {
+  source = "hap/insight.hap"
+  module_install_dir = "app/com.ohos.insight"
+  part_name = "rockchip_products"
+  subsystem_name = "applications"
+}
+
 group("resources") {
   deps = [
     ":bootanimation-1920x1080",
     ":modetest",
     ":busybox",
     ":browser_hap",
-    #":launcher_hap",
-    #":launcher_settings_hap",
+    ":launcher_hap",
+    ":launcher_settings_hap",
     ":settings_hap",
     ":f_oh_hap",
     ":ndk_opengl_hap",
     ":appstore_hap",
     ":browser_opi_hap",
     ":filemanager_hap",
+    ":insight_hap",
   ]
 }
