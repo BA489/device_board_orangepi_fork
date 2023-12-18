@@ -164,6 +164,19 @@ repo sync -c
 
 repo forall -c 'git lfs pull'
 
+3） 下载OrangePi适配源码
+
+git clone https://gitee.com/openharmony-dg/device_board_orangepi device/board/orangepi -b OpenHarmony-4.0-Release
+
+git clone https://gitee.com/openharmony-dg/vendor_orangepi  vendor/orangepi -b OpenHarmony-4.0-Release
+
+git clone  https://gitee.com/openharmony-dg/device_soc_rockchip -b OpenHarmony-4.0-Release
+
+> 重要说明
+> 1. [device_soc_rockchip](https://gitee.com/openharmony-dg/device_soc_rockchip)仓与rk3588s相关适配目录，替换到device/soc/rockchip目录下即可;
+> 2. [build](https://gitee.com/openharmony-dg/build) 仓中的compile_standard_whitelist.json，替换到build目录下即可;
+
+
 **执行prebuilts**
 
 在源码根目录下执行脚本，安装编译器及二进制工具。
@@ -180,13 +193,13 @@ bash build/prebuilts_download.sh
 
 1） 进入源码根目录，执行如下命令进行版本编译。
 
-./build.sh --product-name orangepi_5b
+./build.sh --product-name orangepi_5b --ccache --no-prebuilt-sdk --disable-package-image
 
 2） 检查编译结果。编译完成后，log中显示如下：
 
-post_process
-
-=====build orangepi_5b successful.
+[OHOS INFO] orangepi_5b build success
+[OHOS INFO] Cost time:  0:15:05
+=====build  successful=====
 
 编译所生成的文件都归档在out/目录下，结果镜像输出在
 out/orangepi_5b/packages/phone/images/目录下。

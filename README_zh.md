@@ -16,10 +16,8 @@ OrangePi 5B是一款应用于图像处理，音视频处理和深度学习等场
 RK3588S支持GPU和神经网络加速子系统，支持8K视频编解码器引擎和一流的HDR图像处理，并集成了所有标准音频/视频输入/输出接口。主系统的CPU采用大小核设计，主频高达2.2GHz，集成了四个Cortex-A76核心和两Cortex-A53核心 ，集成独立的5.0T NPU处理器。
 
 #### 开发板架构
-开发板分为底板与核心板
 
-![扩展板架构](./figures/architecture-of-dev-board.png "底板")
-![核心板架构](./figures/architecture-of-core-board.png "核心板")
+![开发板](./figures/orangepi_5b.png "OrangePi 5B")
 
 ## 目录
 
@@ -45,3 +43,5 @@ OrangePi 5B参考:
 - [vendor_orangepi](https://gitee.com/openharmony-dg/vendor_orangepi)
 
 - [device_soc_rockchip](https://gitee.com/openharmony-dg/device_soc_rockchip)
+
+- [kernel](https://gitee.com/openharmony-dg/orangepi_linux_5.10)
