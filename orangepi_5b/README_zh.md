@@ -172,6 +172,8 @@ git clone https://gitee.com/openharmony-dg/vendor_orangepi  vendor/orangepi -b O
 
 git clone  https://gitee.com/openharmony-dg/device_soc_rockchip -b OpenHarmony-4.0-Release
 
+git clone  https://gitee.com/openharmony-dg/rockchip_linux_5.10 kernel/linux/linux-5.10.rk3588s -b OpenHarmony-4.0-Release
+
 > 重要说明
 > 1. [device_soc_rockchip](https://gitee.com/openharmony-dg/device_soc_rockchip)仓与rk3588s相关适配目录，替换到device/soc/rockchip目录下即可;
 > 2. [build](https://gitee.com/openharmony-dg/build) 仓中的compile_standard_whitelist.json，替换到build目录下即可;
