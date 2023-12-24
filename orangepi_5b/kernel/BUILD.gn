@@ -13,8 +13,8 @@
 
 import("//build/config/clang/clang.gni")
 import("//build/ohos.gni")
-kernel_build_script_dir = "//kernel/linux/linux-5.10.rk3588s"
-kernel_source_dir = "//kernel/linux/linux-5.10.rk3588s"
+kernel_build_script_dir = "//kernel/linux/linux-5.10_rockchip"
+kernel_source_dir = "//kernel/linux/linux-5.10_rockchip"
 
 action("kernel") {
   script = "build_kernel.sh"
