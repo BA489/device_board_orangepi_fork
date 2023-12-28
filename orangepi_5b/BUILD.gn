@@ -22,7 +22,6 @@ group("orangepi_group") {
     "hardware:hardware",
     "kernel:kernel",
     "resources:resources",
-    "uboot:uboot",
     "updater:updater_files",
     "//device/soc/rockchip/rk3588s/hardware:hardware_group",
     "//third_party/alsa-utils:alsa-utils",

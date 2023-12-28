@@ -71,6 +71,7 @@ cp ${3}/loader/parameter.txt ${2}/parameter.txt
 cp ${3}/loader/MiniLoaderAll.bin ${2}/MiniLoaderAll.bin
 cp ${3}/loader/misc.img ${2}/misc.img
 cp ${3}/loader/config.cfg ${2}/config.cfg
+cp ${3}/loader/uboot.img ${2}/uboot.img
 popd
 
 ../kernel/src_tmp/linux-5.10/make-boot.sh ..
