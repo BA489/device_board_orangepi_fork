@@ -13,12 +13,6 @@
 
 import("//build/ohos.gni")
 
-ohos_prebuilt_etc("bootanimation-1920x1080") {
-  source = "bootanimation/bootanimation-1920x1080.raw"
-  part_name = "rockchip_products"
-  install_enable = true
-}
-
 ohos_prebuilt_executable("modetest") {
   source = "tools/bin/modetest"
   module_install_dir = "bin"
@@ -29,6 +23,22 @@ ohos_prebuilt_executable("modetest") {
 
 ohos_prebuilt_executable("busybox") {
   source = "tools/bin/busybox"
+  module_install_dir = "bin"
+  install_images = [ "vendor" ]
+  part_name = "rockchip_products"
+  install_enable = true
+}
+
+ohos_prebuilt_executable("media-ctl") {
+  source = "tools/bin/media-ctl"
+  module_install_dir = "bin"
+  install_images = [ "vendor" ]
+  part_name = "rockchip_products"
+  install_enable = true
+}
+
+ohos_prebuilt_executable("v4l2-ctl") {
+  source = "tools/bin/v4l2-ctl"
   module_install_dir = "bin"
   install_images = [ "vendor" ]
   part_name = "rockchip_products"
@@ -59,13 +69,6 @@ ohos_prebuilt_etc("ndk_opengl_hap") {
   subsystem_name = "applications"
 }
 
-ohos_prebuilt_etc("appstore_hap") {
-  source = "hap/Appstore/appstore.hap"
-  module_install_dir = "app/com.xunlong.appstore"
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
 ohos_prebuilt_etc("browser_opi_hap") {
   source = "hap/Browser/browser.hap"
   module_install_dir = "app/com.xunlong.browser"
@@ -74,30 +77,22 @@ ohos_prebuilt_etc("browser_opi_hap") {
 }
 
 ohos_prebuilt_etc("filemanager_hap") {
-  source = "hap/Filemanager/filemanager.hap"
-  module_install_dir = "app/com.xunlong.filemanager"
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
-ohos_prebuilt_etc("insight_hap") {
-  source = "hap/Insight.hap"
-  module_install_dir = "app/com.ohos.insight"
+  source = "hap/FileManager.hap"
+  module_install_dir = "app/com.ohos.filemanager"
   part_name = "rockchip_products"
   subsystem_name = "applications"
 }
 
 group("resources") {
   deps = [
-    ":bootanimation-1920x1080",
     ":modetest",
     ":busybox",
+    ":media-ctl",
+    ":v4l2-ctl",
     ":browser_hap",
     ":f_oh_hap",
     ":ndk_opengl_hap",
-    ":appstore_hap",
     ":browser_opi_hap",
     ":filemanager_hap",
-    ":insight_hap",
   ]
 }
