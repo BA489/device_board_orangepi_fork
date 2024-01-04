@@ -5,3 +5,5 @@ hdc file send .\bin\busybox /system/bin
 hdc shell chmod 777 /system/bin/busybox
 hdc file send .\bin\v4l2-ctl /system/bin
 hdc shell chmod 777 /system/bin/v4l2-ctl
+hdc file send .\bin\media-ctl /system/bin
+hdc shell chmod 777 /system/bin/media-ctl

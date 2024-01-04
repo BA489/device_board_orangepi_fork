@@ -12,7 +12,7 @@
 # limitations under the License.
 
 import("//build/ohos.gni")
-import("//device/board/${product_company}/${product_name}/device.gni")
+import("//device/board/${product_company}/${device_name}/device.gni")
 import("//drivers/hdf_core/adapter/uhdf2/uhdf.gni")
 import("//drivers/peripheral/camera/camera.gni")
 
@@ -67,17 +67,13 @@ ohos_executable("ohos_camera_demo") {
     "$camera_path/pipeline_core/ipp/include",
   ]
 
-  deps = [
-    "$board_camera_path/device_manager:camera_device_manager",
-    "$board_camera_path/pipeline_core:camera_pipeline_core",
-    "$camera_path/../../hdi_service/v1_0:camera_host_service_1.0_static",
-    "$camera_path/buffer_manager:camera_buffer_manager",
-  ]
+  deps =
+      [ "$camera_path/../../hdi_service/v1_0:camera_host_service_1.0_static" ]
 
   if (is_standard_system) {
     external_deps = [
       "c_utils:utils",
-      "graphic_chipsetsdk:surface",
+      "graphic_surface:surface",
       "hdf_core:libhdf_host",
       "hdf_core:libhdf_ipc_adapter",
       "hdf_core:libhdf_utils",
@@ -92,6 +88,7 @@ ohos_executable("ohos_camera_demo") {
   external_deps += [
     "drivers_interface_camera:libcamera_proxy_1.0",
     "drivers_interface_camera:metadata",
+    "drivers_interface_display:libdisplay_composer_proxy_1.0",
     "ipc:ipc_single",
     "samgr:samgr_proxy",
   ]

@@ -43,27 +43,6 @@ ohos_prebuilt_etc("browser_hap") {
   subsystem_name = "applications"
 }
 
-ohos_prebuilt_etc("launcher_hap") {
-  source = "hap/Launcher.hap"
-  module_install_dir = "app/com.ohos.launcher"
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
-ohos_prebuilt_etc("launcher_settings_hap") {
-  source = "hap/Launcher_Settings.hap"
-  module_install_dir = "app/com.ohos.launcher"
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
-ohos_prebuilt_etc("settings_hap") {
-  source = "hap/Settings.hap"
-  module_install_dir = "app/com.ohos.settings"
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
 ohos_prebuilt_etc("f_oh_hap") {
   source = "hap/F-OH-1.3.4.hap"
   module_install_dir = "app/org.ohosdev.foh"
@@ -114,9 +93,6 @@ group("resources") {
     ":modetest",
     ":busybox",
     ":browser_hap",
-    ":launcher_hap",
-    ":launcher_settings_hap",
-    ":settings_hap",
     ":f_oh_hap",
     ":ndk_opengl_hap",
     ":appstore_hap",

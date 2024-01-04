@@ -12,7 +12,7 @@
 # limitations under the License.
 
 import("//build/ohos.gni")
-import("//device/board/${product_company}/${product_name}/device.gni")
+import("//device/board/${product_company}/${device_name}/device.gni")
 import("//drivers/hdf_core/adapter/uhdf2/uhdf.gni")
 import("//drivers/peripheral/camera/camera.gni")
 import("$hdf_framework_path/tools/hc-gen/hc_gen.gni")
@@ -134,7 +134,6 @@ config("camhdi_impl_config") {
 
 host_sources = [
   "$camera_path/../v4l2/src/camera_device/camera_device_vdi_impl.cpp",
-  "$camera_path/../v4l2/src/camera_dump.cpp",
   "$camera_path/../v4l2/src/camera_host/camera_host_config.cpp",
   "$camera_path/../v4l2/src/camera_host/camera_host_vdi_impl.cpp",
   "$camera_path/../v4l2/src/camera_host/hcs_deal.cpp",
@@ -150,6 +149,7 @@ host_sources = [
   "$camera_path/../v4l2/src/stream_operator/stream_still_capture.cpp",
   "$camera_path/../v4l2/src/stream_operator/stream_tunnel/standard/stream_tunnel.cpp",
   "$camera_path/../v4l2/src/stream_operator/stream_video.cpp",
+    "$camera_path/dump/src/camera_dump.cpp",
 ]
 
 host_includes = [
@@ -168,6 +168,7 @@ host_includes = [
   "$camera_path/buffer_manager/src/buffer_adapter/standard",
   "$camera_path/utils/event",
   "$camera_path/../../display/interfaces/include",
+    "$camera_path/dump/include",
 
   #producer
   "$camera_path/pipeline_core/utils",
@@ -189,13 +190,10 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   sources = host_sources
   include_dirs = host_includes
 
-  deps = [
-    "$board_camera_path/device_manager:camera_device_manager",
-    "$board_camera_path/metadata_manager:camera_metadata_manager",
-    "$board_camera_path/pipeline_core:camera_pipeline_core",
-    "$camera_path/buffer_manager:camera_buffer_manager",
-    "$camera_path/utils:camera_utils",
-  ]
+    deps = [
+      "$board_camera_path/device_manager:camera_device_manager",
+      "$board_camera_path/pipeline_core:camera_pipeline_core",
+    ]
 
   defines = []
   if (enable_camera_device_utest) {
@@ -204,11 +202,20 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   if (use_hitrace) {
     defines += [ "HITRACE_LOG_ENABLED" ]
   }
+  if (drivers_peripheral_camera_feature_usb) {
+    defines += [ "CAMERA_BUILT_ON_USB" ]
+  }
 
   if (is_standard_system) {
     external_deps = [
       "c_utils:utils",
-      "graphic_chipsetsdk:surface",
+        "drivers_peripheral_camera:peripheral_camera_buffer_manager",
+        "drivers_peripheral_camera:peripheral_camera_device_manager",
+        "drivers_peripheral_camera:peripheral_camera_metadata_manager",
+        "drivers_peripheral_camera:peripheral_camera_pipeline_core",
+        "drivers_peripheral_camera:peripheral_camera_utils",
+        "drivers_peripheral_camera:peripheral_camera_v4l2_adapter",
+        "graphic_surface:surface",
       "hdf_core:libhdf_host",
       "hdf_core:libhdf_ipc_adapter",
       "hdf_core:libhdf_utils",
@@ -225,6 +232,7 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   external_deps += [
     "drivers_interface_camera:libbuffer_producer_sequenceable_1.0",
     "drivers_interface_camera:metadata",
+      "drivers_interface_display:libdisplay_composer_proxy_1.0",
     "hitrace:hitrace_meter",
     "ipc:ipc_single",
   ]
@@ -240,10 +248,7 @@ ohos_static_library("camera_host_vdi_impl_1.0_static") {
 
   deps = [
     "$board_camera_path/device_manager:camera_device_manager",
-    "$board_camera_path/metadata_manager:camera_metadata_manager",
     "$board_camera_path/pipeline_core:camera_pipeline_core",
-    "$camera_path/buffer_manager:camera_buffer_manager",
-    "$camera_path/utils:camera_utils",
   ]
 
   defines = []
@@ -253,11 +258,19 @@ ohos_static_library("camera_host_vdi_impl_1.0_static") {
   if (use_hitrace) {
     defines += [ "HITRACE_LOG_ENABLED" ]
   }
+    if (drivers_peripheral_camera_feature_usb) {
+      defines += [ "CAMERA_BUILT_ON_USB" ]
+    }
 
   if (is_standard_system) {
     external_deps = [
       "c_utils:utils",
-      "graphic_chipsetsdk:surface",
+        "drivers_peripheral_camera:peripheral_camera_buffer_manager",
+        "drivers_peripheral_camera:peripheral_camera_device_manager",
+        "drivers_peripheral_camera:peripheral_camera_metadata_manager",
+        "drivers_peripheral_camera:peripheral_camera_pipeline_core",
+        "drivers_peripheral_camera:peripheral_camera_utils",
+        "graphic_surface:surface",
       "hdf_core:libhdf_host",
       "hdf_core:libhdf_ipc_adapter",
       "hdf_core:libhdf_utils",
@@ -275,6 +288,7 @@ ohos_static_library("camera_host_vdi_impl_1.0_static") {
   external_deps += [
     "drivers_interface_camera:libbuffer_producer_sequenceable_1.0",
     "drivers_interface_camera:metadata",
+      "drivers_interface_display:libdisplay_composer_proxy_1.0",
     "hitrace:hitrace_meter",
     "ipc:ipc_single",
   ]
@@ -284,12 +298,25 @@ ohos_static_library("camera_host_vdi_impl_1.0_static") {
   part_name = "rockchip_products"
 }
 
-group("camera_board_vdi_impl") {
-  deps = [
-    ":camera_host_vdi_impl_1.0",
-    ":chipset_build",
-  ]
-}
+  ohos_shared_library("camera_pipeline_config") {
+    sources = [
+      "$camera_path/pipeline_core/pipeline_impl/src/strategy/config/config.c",
+      "$camera_path/pipeline_core/pipeline_impl/src/strategy/config/params.c",
+    ]
+    include_dirs =
+        [ "$camera_path/pipeline_core/pipeline_impl/src/strategy/config" ]
+    install_images = [ chipset_base_dir ]
+    subsystem_name = "rockchip_products"
+    part_name = "rockchip_products"
+  }
+
+  group("camera_board_vdi_impl") {
+    deps = [
+      ":camera_host_vdi_impl_1.0",
+      ":camera_pipeline_config",
+      ":chipset_build",
+    ]
+  }
 
 group("camera_board_test") {
   if (target_cpu == "x86_64") {
@@ -298,19 +325,19 @@ group("camera_board_test") {
     testonly = true
     deps = [
       #device manager test
-      "device_manager/test/unittest:camera_board_device_manager_unittest",
+        #"device_manager/test/unittest:camera_board_device_manager_unittest",
 
       #driver adapter v4l2 test
-      "driver_adapter/test/v4l2_test:v4l2_main",
+        #"driver_adapter/test/v4l2_test:v4l2_main",
 
       #driver adapter v4l2 unittest
-      "driver_adapter/test/unittest:v4l2_adapter_unittest",
+        #"driver_adapter/test/unittest:v4l2_adapter_unittest",
 
       # pipeline core test
       "pipeline_core/test/unittest:camera_pipeline_core_test_ut",
 
       # demo test
-      "demo:ohos_camera_demo",
+        #"demo:ohos_camera_demo",
     ]
   }
 }

@@ -14,6 +14,7 @@
 #include "rk_exif_node.h"
 #include <exif_utils.h>
 #include <securec.h>
+#include "camera_dump.h"
 
 namespace OHOS::Camera {
 RKExifNode::RKExifNode(const std::string &name, const std::string &type, const std::string &cameraId)
@@ -71,8 +72,16 @@ void RKExifNode::DeliverBuffer(std::shared_ptr<IBuffer> &buffer)
         }
     }
 
-    outPutPorts_ = GetOutPorts();
-    for (auto& it : outPutPorts_) {
+    CameraDumper& dumper = CameraDumper::GetInstance();
+    dumper.DumpBuffer("board_RKExifNode", ENABLE_RKEXIF_NODE_CONVERTED, buffer);
+
+    std::vector<std::shared_ptr<IPort>> outPutPorts;
+    outPutPorts = GetOutPorts();
+    for (auto& it : outPutPorts) {
+        if (it == nullptr) {
+            CAMERA_LOGE("RKExifNode deliver buffer port is null");
+            continue;
+        }
         if (it->format_.streamId_ == id) {
             it->DeliverBuffer(buffer);
             CAMERA_LOGI("RKExifNode deliver buffer streamid = %{public}d", it->format_.streamId_);

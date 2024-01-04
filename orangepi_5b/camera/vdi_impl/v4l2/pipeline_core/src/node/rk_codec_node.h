@@ -58,8 +58,6 @@ private:
     void Yuv420ToJpeg(std::shared_ptr<IBuffer>& buffer);
     void Yuv420ToH264(std::shared_ptr<IBuffer>& buffer);
 
-    static uint32_t                       previewWidth_;
-    static uint32_t                       previewHeight_;
     void* halCtx_ = nullptr;
     int mppStatus_ = 0;
     uint32_t jpegRotation_;
