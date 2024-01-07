@@ -18,7 +18,7 @@
 
 /* Playback Path */
 #define     SND_NUMID_PLAYBACK_PATH          1
-#define     SND_ELEM_PLAYBACK_PATH           "Playback Path"
+#define     SND_ELEM_PLAYBACK_PATH           "Output 1"
 #define     SND_OUT_CARD_OFF                 "0"   /* close play path */
 #define     SND_OUT_CARD_RCV                 "1"   /* speaker */
 #define     SND_OUT_CARD_SPK                 "2"   /* speaker */
@@ -33,7 +33,7 @@
 
 /* Capture MIC Path */
 #define     SND_NUMID_CAPUTRE_MIC_PATH       2
-#define     SND_ELEM_CAPUTRE_MIC_PATH        "Capture MIC Path"
+#define     SND_ELEM_CAPUTRE_MIC_PATH        "Capture Digital"
 #define     SND_IN_CARD_MIC_OFF              "0"  /* close capture path */
 #define     SND_IN_CARD_MAIN_MIC             "1"  /* main mic */
 #define     SND_IN_CARD_HANDS_FREE_MIC       "2"  /* hands free mic */
@@ -41,18 +41,18 @@
 
 /* DACL Playback Volume  */
 #define     SND_NUMID_DACL_PLAYBACK_VOL      3
-#define     SND_ELEM_DACL_PLAYBACK_VOL       "DACL Playback Volume"
+#define     SND_ELEM_DACL_PLAYBACK_VOL       "Output 1"
 
 /* DACR Playback Volume  */
 #define     SND_NUMID_DACR_PLAYBACK_VOL      4
-#define     SND_ELEM_DACR_PLAYBACK_VOL       "DACR Playback Volume"
+#define     SND_ELEM_DACR_PLAYBACK_VOL       "Output 2"
 
 /* DACL Capture Volume  */
 #define     SND_NUMID_DACL_CAPTURE_VOL       5
-#define     SND_ELEM_DACL_CAPTURE_VOL        "DACL Capture Volume"
+#define     SND_ELEM_DACL_CAPTURE_VOL        "Capture Digital"
 
 /* DACR Capture Volume  */
 #define     SND_NUMID_DACR_CAPTURE_VOL       6
-#define     SND_ELEM_DACR_CAPTURE_VOL        "DACR Capture Volume"
+#define     SND_ELEM_DACR_CAPTURE_VOL        "Capture Digital"
 
 #endif /* ALSA_SND_COMMON_H */

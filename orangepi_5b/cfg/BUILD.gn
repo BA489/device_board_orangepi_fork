@@ -36,14 +36,6 @@ ohos_prebuilt_executable("init.rk3588.sh") {
   install_enable = true
 }
 
-ohos_prebuilt_executable("lcd_reset") {
-  source = "bin/lcd_reset"
-  module_install_dir = "bin"
-  install_images = [ "vendor" ]
-  part_name = "rockchip_products"
-  install_enable = true
-}
-
 ohos_prebuilt_etc("init.rk3588.usb.cfg") {
   source = "init.rk3588.usb.cfg"
   part_name = "rockchip_products"
@@ -76,13 +68,20 @@ ohos_prebuilt_etc("sysctl.conf") {
   part_name = "rockchip_products"
 }
 
+ohos_prebuilt_etc("param_for_ohos") {
+  source = "etc/param/ohos.para"
+  install_images = [ "system" ]
+  relative_install_dir = "param"
+  part_name = "rockchip_products"
+}
+
 group("init_configs") {
   deps = [
     ":fstab.rk3588",
     ":init.rk3588.cfg",
     ":init.rk3588.sh",
     ":init.rk3588.usb.cfg",
-    ":lcd_reset",
+    ":param_for_ohos",
     ":selinux_config",
     ":sysctl.conf",
   ]
