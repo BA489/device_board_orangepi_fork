@@ -13,8 +13,9 @@
 
 import("//build/config/clang/clang.gni")
 import("//build/ohos.gni")
-kernel_build_script_dir = "//kernel/linux/linux-5.10.rk3588s"
-kernel_source_dir = "//kernel/linux/linux-5.10.rk3588s"
+
+kernel_build_script_dir = "//kernel/linux/linux-orangepi"
+kernel_source_dir = "//kernel/linux/linux-orangepi"
 
 action("kernel") {
   script = "build_kernel.sh"

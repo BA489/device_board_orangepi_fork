@@ -1,0 +1,39 @@
+
+import("//build/ohos.gni")
+
+ohos_executable("modetest") {
+
+  sources = [
+    "//third_party/libdrm/tests/modetest/buffers.c",
+    "//third_party/libdrm/tests/modetest/cursor.c",
+    "//third_party/libdrm/tests/modetest/modetest.c",
+    "//third_party/libdrm/tests/util/format.c",
+    "//third_party/libdrm/tests/util/kms.c",
+    "//third_party/libdrm/tests/util/pattern.c",
+  ]
+
+  cflags_c = [
+    "-Wno-unused-variable",
+  ]
+
+  include_dirs = [
+    "//third_party/libdrm/tests",
+    "//third_party/libdrm/tests/util",
+    "//third_party/libdrm/tests/modetest",
+  ]
+
+  deps = [
+    "//third_party/libdrm:libdrm",
+  ]
+
+  part_name = "rockchip_products"
+  install_images = [ "system" ]
+  install_enable = true
+}
+
+group("test") {
+  deps = [
+    ":modetest"
+  ]
+
+}

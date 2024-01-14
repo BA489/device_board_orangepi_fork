@@ -26,6 +26,8 @@ group("orangepi_group") {
     "updater:updater_files",
     "//device/soc/rockchip/rk3588s/hardware:hardware_group",
     "//third_party/alsa-utils:alsa-utils",
+    "prebuilts",
+    "test"
   ]
 
   if (is_support_graphic) {

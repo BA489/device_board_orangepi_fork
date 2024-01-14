@@ -1,0 +1,13 @@
+import("//build/ohos.gni")
+
+group("prebuilts") {
+    deps = [
+        ":busybox",
+    ]
+}
+
+ohos_prebuilt_executable("busybox") {
+  source = "busybox"
+  install_enable = true
+  subsystem_name = "rockchip_products"
+}
