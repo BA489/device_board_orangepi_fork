@@ -1,0 +1,26 @@
+From e8a8e029cca6f4371e38c00125f0c48a4f4a86ab Mon Sep 17 00:00:00 2001
+From: yuanjq <yuanjq91@gmail.com>
+Date: Wed, 17 Jan 2024 01:24:26 +0800
+Subject: [PATCH] update OsalGetSysTimeMs declaration
+
+Change-Id: Id6d1057707280a6479bcac587bd5ef2b4168979b
+---
+ adapter/khdf/linux/osal/src/osal_time.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/adapter/khdf/linux/osal/src/osal_time.c b/adapter/khdf/linux/osal/src/osal_time.c
+index 20d121e..42e5cbb 100644
+--- a/adapter/khdf/linux/osal/src/osal_time.c
++++ b/adapter/khdf/linux/osal/src/osal_time.c
+@@ -98,7 +98,7 @@ void OsalMDelay(uint32_t ms)
+ }
+ EXPORT_SYMBOL(OsalMDelay);
+ 
+-uint64_t OsalGetSysTimeMs()
++uint64_t OsalGetSysTimeMs(void)
+ {
+ 	OsalTimespec time;
+ 
+-- 
+2.34.1
+

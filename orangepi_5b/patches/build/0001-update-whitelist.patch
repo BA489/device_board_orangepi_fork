@@ -1,0 +1,168 @@
+From 45d6dc3617459578d3980dcd71656bb760bba18c Mon Sep 17 00:00:00 2001
+From: yuanjq <yuanjq91@gmail.com>
+Date: Wed, 17 Jan 2024 01:47:58 +0800
+Subject: [PATCH] update whitelist
+
+Change-Id: Id1af868273a784b18c1cb30227f575be3003fe1b
+---
+ compile_standard_whitelist.json | 88 +++++++++++++++++++++++++++++++--
+ 1 file changed, 85 insertions(+), 3 deletions(-)
+
+diff --git a/compile_standard_whitelist.json b/compile_standard_whitelist.json
+index db4d288..658697b 100644
+--- a/compile_standard_whitelist.json
++++ b/compile_standard_whitelist.json
+@@ -3,12 +3,14 @@
+         "device/board/hihope/rk3568/ohos.build",
+         "device/board/hisilicon/hispark_taurus/linux/ohos.build",
+         "device/board/hisilicon/hispark_taurus/ohos.build",
++        "device/board/orangepi/orangepi_5b/ohos.build",
+         "device/qemu/arm_virt/linux/ohos.build",
+         "third_party/flutter/glfw/bundle.json",
+         "third_party/pixman/bundle.json",
+         "third_party/wayland_standard/bundle.json",
+         "third_party/wpa_supplicant/wpa_supplicant-2.9_standard/bundle.json",
+-        "vendor/hihope/rk3568/ohos.build"
++        "vendor/hihope/rk3568/ohos.build",
++        "vendor/orangepi/orangepi_5b/ohos.build"
+     ],
+     "subsystem_components": [],
+     "gn_part_or_subsystem_error": [
+@@ -32,6 +34,29 @@
+         "//device/soc/rockchip/rk3568/hardware/omx_il/component/video/enc:libomxvpu_enc",
+         "//device/soc/rockchip/rk3568/hardware/omx_il/core:libOMX_Core",
+         "//device/soc/rockchip/rk3568/hardware/omx_il/libOMXPlugin:libOMX_Pluginhw",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_render_adapter",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_capture_adapter",
++        "//device/board/orangepi/orangepi_5b/startup/reboot_loader:rebootloader",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/device_manager:camera_device_manager",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/driver_adapter:camera_v4l2_adapter",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/metadata_manager:camera_metadata_manager",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/pipeline_core:camera_ipp_algo_example",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/pipeline_core:camera_pipeline_core",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2:camera_host_vdi_impl_1.0",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp-develop/mpp:rockchip_mpp",
++        "//device/soc/rockchip/rk3588s/hardware/codec/jpeg:libjpeg_vdi_interface",
++        "//device/soc/rockchip/rk3588s/hardware/codec:libcodec_oem_interface",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_composer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_gfx",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vdi_impl",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_composer_vdi_impl",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp/legacy:librockchip_vpu",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/common:libRkOMX_Resourcemanager",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/video/dec:libomxvpu_dec",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/video/enc:libomxvpu_enc",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/core:libOMX_Core",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/libOMXPlugin:libOMX_Pluginhw",
+         "//foundation/arkui/napi/sample/native_module_systemtest:systemtestnapi",
+         "//ide/tools/previewer:lite_previewer",
+         "//third_party/iptables/extensions:libext",
+@@ -43,7 +68,8 @@
+         "//third_party/wpa_supplicant/wpa_supplicant-2.9_standard:wpa_client_updater",
+         "//third_party/wpa_supplicant/wpa_supplicant-2.9_standard:wpa_supplicant",
+         "//third_party/wpa_supplicant/wpa_supplicant-2.9_standard:wpa_updater",
+-        "//vendor/hihope/rk3568/bluetooth:libbt_vendor"
++        "//vendor/hihope/rk3568/bluetooth:libbt_vendor",
++        "//vendor/orangepi/orangepi_5b/bluetooth:libbt_vendor"
+     ],
+     "deps_added_external_part_module": [
+         "//arkcompiler/ets_runtime/ecmascript/compiler:ark_aot_compiler",
+@@ -136,6 +162,26 @@
+         "//device/soc/rockchip/rk3568/hardware/omx_il/component/video/enc:libomxvpu_enc",
+         "//device/soc/rockchip/rk3568/hardware/omx_il/core:libOMX_Core",
+         "//device/soc/rockchip/rk3568/hardware/omx_il/osal:RkOMX_OSAL",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_render_adapter",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_capture_adapter",
++        "//device/board/orangepi/orangepi_5b/startup/reboot_loader:rebootloader",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/pipeline_core:camera_pipeline_core",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2:camera_host_vdi_impl_1.0",
++        "//device/soc/rockchip/rk3588s/hardware/codec:libcodec_oem_interface",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_composer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_gfx",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vdi_impl",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_composer_vdi_impl",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp/hdi_mpp:hdi_mpp",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp/legacy:librockchip_vpu",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp/legacy:rockchip_vpu_src",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/common:RkOMX_Basecomponent",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/common:libRkOMX_Resourcemanager",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/video/dec:libomxvpu_dec",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/video/enc:libomxvpu_enc",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/core:libOMX_Core",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/osal:RkOMX_OSAL",
+         "//drivers/hdf_core/adapter/build/test_common:libhdf_test_common",
+         "//drivers/hdf_core/adapter/uhdf/manager:hdf_core",
+         "//drivers/hdf_core/adapter/uhdf/posix:hdf_posix_osal",
+@@ -385,6 +431,7 @@
+         "//drivers/peripheral/codec/test/demo/v1.0:codec_encode_test_ipc",
+         "//drivers/peripheral/codec/test/demo/v2.0:codec_hdi_omx_decode",
+         "//drivers/peripheral/codec/test/demo/v2.0:codec_hdi_omx_encode",
++        "//device/board/orangepi/orangepi_5b/startup/reboot_loader:rebootloader",
+         "//foundation/ability/ability_runtime/services/quickfixmgr:quickfixms_static",
+         "//foundation/ability/ability_runtime/services/uripermmgr:libupms_static",
+         "//foundation/ability/ability_runtime/test/moduletest/common/ams:appmgr_mst_source",
+@@ -454,6 +501,32 @@
+         "//device/soc/rockchip/rk3568/hardware/omx_il/core:libOMX_Core",
+         "//device/soc/rockchip/rk3568/hardware/omx_il/libOMXPlugin:libOMX_Pluginhw",
+         "//device/soc/rockchip/rk3568/hardware/omx_il/osal:RkOMX_OSAL",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/device_manager:camera_device_manager",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/driver_adapter:camera_v4l2_adapter",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/metadata_manager:camera_metadata_manager",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/pipeline_core:camera_ipp_algo_example",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/pipeline_core:camera_pipeline_core",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2:camera_host_vdi_impl_1.0",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_render_adapter",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_capture_adapter",
++        "//device/board/orangepi/orangepi_5b/startup/reboot_loader:rebootloader",
++        "//device/soc/rockchip/rk3588s/hardware/codec/jpeg:libjpeg_vdi_interface",
++        "//device/soc/rockchip/rk3588s/hardware/codec:libcodec_oem_interface",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_composer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_gfx",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vdi_impl",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_composer_vdi_impl",
++        "//device/soc/rockchip/rk3588s/hardware/display:libhigbm_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp/hdi_mpp:hdi_mpp",
++        "//device/soc/rockchip/rk3588s/hardware/mpp/mpp/legacy:rockchip_vpu_src",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/common:RkOMX_Basecomponent",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/common:libRkOMX_Resourcemanager",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/video/dec:libomxvpu_dec",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/component/video/enc:libomxvpu_enc",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/core:libOMX_Core",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/libOMXPlugin:libOMX_Pluginhw",
++        "//device/soc/rockchip/rk3588s/hardware/omx_il/osal:RkOMX_OSAL",
+         "//drivers/hdf_core/adapter/uhdf/platform:hdf_platform",
+         "//drivers/peripheral/input/hal:hdi_input",
+         "//drivers/peripheral/light/hal:hdi_light",
+@@ -481,9 +554,14 @@
+         "//third_party/flutter/build:flutter_engine_fml_ohos",
+         "//third_party/libfuse:libfuse",
+         "//third_party/vk-gl-cts/framework/platform:libdeqp_ohos_platform",
+-        "//vendor/hihope/rk3568/bluetooth:libbt_vendor"
++        "//vendor/hihope/rk3568/bluetooth:libbt_vendor",
++        "//vendor/orangepi/orangepi_5b/bluetooth:libbt_vendor"
+     ],
+     "third_deps_bundle_not_add": [
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_render_adapter",
++        "//device/board/orangepi/orangepi_5b/hardware/audio:audio_capture_adapter",
++        "//device/board/orangepi/orangepi_5b/startup/reboot_loader:rebootloader",
++	"//device/board/orangepi/orangepi_5b/test:modetest",
+         "//base/global/i18n_lite/interfaces/kits/js/builtin:nativeapi_locale_simulator",
+         "//base/global/resource_management_lite/frameworks/resmgr_lite:global_resmgr_simulator",
+         "//base/powermgr/battery_manager/charger:charger",
+@@ -502,6 +580,10 @@
+         "//device/soc/rockchip/rk3568/hardware/display:display_composer_vendor",
+         "//device/soc/rockchip/rk3568/hardware/display:libdisplay_buffer_vendor",
+         "//device/soc/rockchip/rk3568/hardware/display:libhigbm_vendor",
++        "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/pipeline_core:camera_pipeline_core",
++        "//device/soc/rockchip/rk3588s/hardware/display:display_composer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:libdisplay_buffer_vendor",
++        "//device/soc/rockchip/rk3588s/hardware/display:libhigbm_vendor",
+         "//drivers/peripheral/audio/effect/model:effect_model_service_1.0",
+         "//drivers/peripheral/codec/test/demo/adapter:codec_hdi_adapter_decode",
+         "//drivers/peripheral/codec/test/demo/adapter:codec_hdi_adapter_encode",
+-- 
+2.34.1
+

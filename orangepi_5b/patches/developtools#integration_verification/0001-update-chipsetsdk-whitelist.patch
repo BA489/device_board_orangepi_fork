@@ -1,0 +1,27 @@
+From 059d64c2875838e4e3cc0244796659f5bddfc46f Mon Sep 17 00:00:00 2001
+From: yuanjq <yuanjq91@gmail.com>
+Date: Thu, 18 Jan 2024 00:13:24 +0800
+Subject: [PATCH] update chipsetsdk whitelist
+
+Change-Id: Id0abe4d3652d21870d92499d10615f43f27baa9f
+---
+ tools/deps_guard/rules/ChipsetSDK/whitelist.json | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/tools/deps_guard/rules/ChipsetSDK/whitelist.json b/tools/deps_guard/rules/ChipsetSDK/whitelist.json
+index 0a44cb1..3d1d2aa 100755
+--- a/tools/deps_guard/rules/ChipsetSDK/whitelist.json
++++ b/tools/deps_guard/rules/ChipsetSDK/whitelist.json
+@@ -86,5 +86,8 @@
+ 	"librtg_interface.z.so",
+ 	"libconcurrent_task_client.z.so",
+ 	"libffrt.z.so",
+-	"libbtcommon.z.so"
++	"libbtcommon.z.so",
++
++	"libasound.so",
++	"libinit_stub_empty.so"
+ ]
+-- 
+2.34.1
+

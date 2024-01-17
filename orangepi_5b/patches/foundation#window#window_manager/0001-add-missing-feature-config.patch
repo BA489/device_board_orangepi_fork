@@ -1,0 +1,25 @@
+From 1e359946c8d2580343c2701715c626f471d4f4f0 Mon Sep 17 00:00:00 2001
+From: yuanjq <yuanjq91@gmail.com>
+Date: Wed, 17 Jan 2024 01:17:39 +0800
+Subject: [PATCH] add missing feature config
+
+Change-Id: I80460448bcce8f17f9ce602497ec7951f35e157b
+---
+ bundle.json | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/bundle.json b/bundle.json
+index fd5e212..daa8f77 100755
+--- a/bundle.json
++++ b/bundle.json
+@@ -15,6 +15,7 @@
+       "syscap": ["SystemCapability.WindowManager.WindowManager.Core"],
+       "features": [
+         "window_manager_feature_coverage = false",
++        "window_manager_dayu200_resource_config",
+         "window_manager_dayu210_resource_config",
+         "window_manager_feature_subscribe_motion"
+       ],
+-- 
+2.34.1
+
