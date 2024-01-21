@@ -279,10 +279,30 @@
 };
 
 &pwm3 {
-	status = "disabled";
-	pinctrl-names = "active";
-	pinctrl-0 = <&pwm3m2_pins>;
-	//pinctrl-0 = <&pwm3m0_pins>;
+	status = "okay";
+	compatible = "rockchip,remotectl-pwm";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm3m0_pins>;
+	remote_pwm_id = <3>;
+	handle_cpu_id = <1>;
+	remote_support_psci = <1>;
+
+	ir_key1 {
+		rockchip,usercode = <0xbf40>;
+		rockchip,key_table =
+			<0xed	KEY_POWER>,
+			<0xef	KEY_MUTE>,
+			<0xe1	KEY_VOLUMEDOWN>,
+			<0xe5	KEY_VOLUMEUP>,
+			<0xae	KEY_HOME>,
+			<0xbf	KEY_BACK>,
+			<0xa4	KEY_MENU>,
+			<0xe6	KEY_UP>,
+			<0xe2	KEY_DOWN>,
+			<0xb9	KEY_LEFT>,
+			<0xb8	KEY_RIGHT>,
+			<0xf5	KEY_ENTER>;
+	};
 };
 
 /*
