@@ -1171,6 +1171,25 @@ int32_t AudioOutputRenderOpen(const struct DevHandle *handle, int cmdId, const s
         return HDF_FAILURE;
     }
 
+    AudioMixerCtlElementWrite("name='3D Mode'", "5");
+    AudioMixerCtlElementWrite("name='Speaker Switch'", "0");
+    AudioMixerCtlElementWrite("name='Headphone Switch'", "1");
+    AudioMixerCtlElementWrite("name='Headset Mic Switch'", "0");
+    AudioMixerCtlElementWrite("name='PCM Volume'", "192");
+    AudioMixerCtlElementWrite("name='Output 1 Playback Volume'", "27");
+    AudioMixerCtlElementWrite("name='Output 2 Playback Volume'", "27");
+    AudioMixerCtlElementWrite("name='Capture Digital Volume'", "192");
+    AudioMixerCtlElementWrite("name='Left Channel Capture Volume'", "3");
+    AudioMixerCtlElementWrite("name='Right Channel Capture Volume'", "3");
+    AudioMixerCtlElementWrite("name='Left Mixer Left Playback Switch'", "1");
+    AudioMixerCtlElementWrite("name='Right Mixer Right Playback Switch'", "1");
+    AudioMixerCtlElementWrite("name='Capture Mute'", "0");
+    AudioMixerCtlElementWrite("name='Right PGA Mux'", "2");
+    AudioMixerCtlElementWrite("name='Left PGA Mux'", "2");
+
+    AudioMixerCtlElementWrite("name='Differential Mux'", "1");
+    AudioMixerCtlElementWrite("name='Main Mic Switch'", "1");
+
     AUDIO_FUNC_LOGI("AudioOutputRenderOpen Succ!");
 
     return HDF_SUCCESS;

@@ -907,6 +907,25 @@ int32_t AudioOutputCaptureOpen(const struct DevHandle *handle, int cmdId, const 
         return ret;
     }
 
+    AudioMixerCtlElementWrite("name='3D Mode'", "5");
+    AudioMixerCtlElementWrite("name='Speaker Switch'", "0");
+    AudioMixerCtlElementWrite("name='Headphone Switch'", "1");
+    AudioMixerCtlElementWrite("name='Headset Mic Switch'", "0");
+    AudioMixerCtlElementWrite("name='PCM Volume'", "192");
+    AudioMixerCtlElementWrite("name='Output 1 Playback Volume'", "27");
+    AudioMixerCtlElementWrite("name='Output 2 Playback Volume'", "27");
+    AudioMixerCtlElementWrite("name='Capture Digital Volume'", "192");
+    AudioMixerCtlElementWrite("name='Left Channel Capture Volume'", "3");
+    AudioMixerCtlElementWrite("name='Right Channel Capture Volume'", "3");
+    AudioMixerCtlElementWrite("name='Left Mixer Left Playback Switch'", "1");
+    AudioMixerCtlElementWrite("name='Right Mixer Right Playback Switch'", "1");
+    AudioMixerCtlElementWrite("name='Capture Mute'", "0");
+    AudioMixerCtlElementWrite("name='Right PGA Mux'", "2");
+    AudioMixerCtlElementWrite("name='Left PGA Mux'", "2");
+
+    AudioMixerCtlElementWrite("name='Differential Mux'", "1");
+    AudioMixerCtlElementWrite("name='Main Mic Switch'", "1");
+
     AUDIO_FUNC_LOGI("AudioOutputCaptureOpen Succ!");
 
     return HDF_SUCCESS;
@@ -1002,17 +1021,15 @@ static int32_t CheckPcmStatus(snd_pcm_t *capturePcmHandle)
         return HDF_FAILURE;
     }
 
-    ret = snd_pcm_wait(capturePcmHandle, -1); /* -1 for timeout, Waiting forever */
+    ret = snd_pcm_wait(capturePcmHandle, 100);
     if (ret < 0) {
-        AUDIO_FUNC_LOGE("snd_pcm_wait failed: %{public}s.", snd_strerror(ret));
-        return HDF_FAILURE;
+        AUDIO_FUNC_LOGW("snd_pcm_wait failed: %{public}s.", snd_strerror(ret));
     }
 
     if (snd_pcm_state(capturePcmHandle) == SND_PCM_STATE_SETUP) {
         ret = snd_pcm_prepare(capturePcmHandle);
         if (ret < 0) {
-            AUDIO_FUNC_LOGE("snd_pcm_prepare fail: %{public}s", snd_strerror(ret));
-            return HDF_FAILURE;
+            AUDIO_FUNC_LOGW("snd_pcm_prepare fail: %{public}s", snd_strerror(ret));
         }
     }
 

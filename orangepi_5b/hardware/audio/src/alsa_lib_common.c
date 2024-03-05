@@ -959,6 +959,83 @@ int32_t AudioGetCardInfo(struct AudioCardInfo *cardIns, const char *adapterName,
     return HDF_SUCCESS;
 }
 
+void AudioMixerCtlElementWrite(const char *mixerCtrlName, const char *item)
+{
+    int32_t ret;
+    snd_ctl_t *handle = NULL;
+    snd_ctl_elem_info_t *info;
+    snd_ctl_elem_id_t *id;
+    snd_ctl_elem_value_t *control;
+    snd_hctl_t *hctl;
+    snd_hctl_elem_t *elem;
+    char card[64] = "default";
+
+    if (mixerCtrlName == NULL) {
+        AUDIO_FUNC_LOGE("AudioCtlRenderSetVolume parameter is NULL!");
+        return ;
+    }
+
+    snd_ctl_elem_info_alloca(&info);
+    snd_ctl_elem_id_alloca(&id);
+    snd_ctl_elem_value_alloca(&control);
+
+    if (snd_ctl_ascii_elem_id_parse(id, mixerCtrlName)) {
+        AUDIO_FUNC_LOGE("Wrong control identifier: %{public}s\n", mixerCtrlName);
+        return ;
+    }
+
+    if ((ret = snd_ctl_open(&handle, card, 0)) < 0) {
+        AUDIO_FUNC_LOGE("Control %{public}s open error: %{public}s\n", card, snd_strerror(ret));
+        return ;
+    }
+
+    snd_ctl_elem_info_set_id(info, id);
+    if ((ret = snd_ctl_elem_info(handle, info)) < 0) {
+        AUDIO_FUNC_LOGE("Cannot find the given element from control %{public}s\n", card);
+        return ;
+    }
+
+    snd_ctl_elem_info_get_id(info, id);     /* FIXME: Remove it when hctl find works ok !!! */
+    snd_ctl_elem_value_set_id(control, id);
+    if ((ret = snd_ctl_elem_read(handle, control)) < 0) {
+        AUDIO_FUNC_LOGE("Cannot read the given element from control %{public}s\n", card);
+        return ;
+    }
+
+    ret = snd_ctl_ascii_value_parse(handle, control, info, item);
+    if (ret < 0) {
+        AUDIO_FUNC_LOGE("Control %{public}s parse error: %{public}s\n", card, snd_strerror(ret));
+        return ;
+    }
+
+    if ((ret = snd_ctl_elem_write(handle, control)) < 0) {
+        AUDIO_FUNC_LOGE("Control %{public}s element write error: %{public}s\n", card, snd_strerror(ret));
+        return ;
+    }
+
+    if ((ret = snd_hctl_open(&hctl, card, 0)) < 0) {
+        AUDIO_FUNC_LOGE("Control %{public}s open error: %{public}s\n", card, snd_strerror(ret));
+        return ;
+    }
+
+    if ((ret = snd_hctl_load(hctl)) < 0) {
+        AUDIO_FUNC_LOGE("Control %{public}s load error: %{public}s\n", card, snd_strerror(ret));
+        return ;
+    }
+
+    elem = snd_hctl_find_elem(hctl, id);
+    if (elem == NULL) {
+        AUDIO_FUNC_LOGE("Could not find the specified element\n");
+    }
+
+    snd_hctl_close(hctl);
+
+    snd_ctl_close(handle);
+    handle = NULL;
+
+    return ;
+}
+
 int32_t CheckParaFormat(struct AudioPcmHwParams hwParams, snd_pcm_format_t *alsaPcmFormat)
 {
     if (alsaPcmFormat == NULL) {

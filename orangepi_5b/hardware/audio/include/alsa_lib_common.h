@@ -132,6 +132,7 @@ int32_t GetSelCardInfo(struct AudioCardInfo *cardIns, struct AlsaDevInfo *devIns
 int32_t MatchSelAdapter(const char *adapterName, struct AudioCardInfo *cardIns, int32_t alsaDevNum);
 int32_t GetPriMixerCtlElement(struct AudioCardInfo *cardIns, snd_mixer_t *mixer, snd_pcm_stream_t stream);
 int32_t AudioSetCtrlVolumeRange(struct AudioCardInfo *cardIns, const char *adapterName, snd_pcm_stream_t stream);
+void AudioMixerCtlElementWrite(const char *mixerCtrlName, const char *item);
 int32_t CardInfoParseFromConfig(void);
 int32_t AudioMixerSetCtrlMode(struct AudioCardInfo *cardIns, const char *adapterName, snd_pcm_stream_t stream);
 int32_t EnableAudioRenderRoute(const struct AudioHwRenderParam *renderData);

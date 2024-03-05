@@ -68,6 +68,12 @@ ohos_prebuilt_etc("sysctl.conf") {
   part_name = "rockchip_products"
 }
 
+ohos_prebuilt_etc("param_for_display") {
+  source = "etc/param/display.para"
+  relative_install_dir = "param"
+  part_name = "rockchip_products"
+}
+
 ohos_prebuilt_etc("param_for_ohos") {
   source = "etc/param/ohos.para"
   install_images = [ "system" ]
@@ -81,6 +87,7 @@ group("init_configs") {
     ":init.rk3588.cfg",
     ":init.rk3588.sh",
     ":init.rk3588.usb.cfg",
+    ":param_for_display",
     ":param_for_ohos",
     ":selinux_config",
     ":sysctl.conf",

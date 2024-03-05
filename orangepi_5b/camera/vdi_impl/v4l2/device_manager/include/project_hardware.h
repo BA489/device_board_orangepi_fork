@@ -18,10 +18,10 @@
 
 namespace OHOS::Camera {
 std::vector<HardwareConfiguration> hardware = {
-    {CAMERA_FIRST, DM_M_SENSOR, DM_C_SENSOR, (std::string) "rkisp_v6"},
+    {CAMERA_FIRST, DM_M_SENSOR, DM_C_SENSOR, (std::string) "uvcvideo"},
     {CAMERA_FIRST, DM_M_ISP, DM_C_ISP, (std::string) "isp"},
     {CAMERA_FIRST, DM_M_FLASH, DM_C_FLASH, (std::string) "flash"},
-    {CAMERA_SECOND, DM_M_SENSOR, DM_C_SENSOR, (std::string) "Imx600"},
+    {CAMERA_SECOND, DM_M_SENSOR, DM_C_SENSOR, (std::string) "uvcvideo"},
     {CAMERA_SECOND, DM_M_ISP, DM_C_ISP, (std::string) "isp"},
     {CAMERA_SECOND, DM_M_FLASH, DM_C_FLASH, (std::string) "flash"}
 };

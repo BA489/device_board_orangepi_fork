@@ -61,21 +61,6 @@ ohos_prebuilt_etc("f_oh_hap") {
   subsystem_name = "applications"
 }
 
-ohos_prebuilt_etc("ndk_opengl_hap") {
-  source = "hap/NdkOpenGL.hap"
-  module_install_dir = "app/com.samples.ndkopengl"
-  install_enable = true
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
-ohos_prebuilt_etc("browser_opi_hap") {
-  source = "hap/Browser/browser.hap"
-  module_install_dir = "app/com.xunlong.browser"
-  part_name = "rockchip_products"
-  subsystem_name = "applications"
-}
-
 ohos_prebuilt_etc("filemanager_hap") {
   source = "hap/FileManager.hap"
   module_install_dir = "app/com.ohos.filemanager"
@@ -91,8 +76,6 @@ group("resources") {
     ":v4l2-ctl",
     ":browser_hap",
     ":f_oh_hap",
-    ":ndk_opengl_hap",
-    ":browser_opi_hap",
     ":filemanager_hap",
   ]
 }
