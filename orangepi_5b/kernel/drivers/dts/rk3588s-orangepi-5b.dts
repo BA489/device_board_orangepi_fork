@@ -290,7 +290,7 @@
    pin10: GPIO4_A4
 */
 &uart0 {
-	status = "disabled";
+	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0m2_xfer>;
 };
