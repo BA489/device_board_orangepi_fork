@@ -157,7 +157,7 @@ repo forall -c 'git lfs pull'
 
 2） 通过repo + https 下载。
 
-repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-4.0-Release
+repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-4.1-Release
 \--no-repo-verify
 
 repo sync -c
@@ -166,13 +166,13 @@ repo forall -c 'git lfs pull'
 
 3） 下载OrangePi适配源码
 
-git clone https://gitee.com/openharmony-dg/device_board_orangepi device/board/orangepi -b OpenHarmony-4.0-Release
+git clone https://gitee.com/openharmony-dg/device_board_orangepi device/board/orangepi -b OpenHarmony-4.1-Release
 
-git clone https://gitee.com/openharmony-dg/vendor_orangepi  vendor/orangepi -b OpenHarmony-4.0-Release
+git clone https://gitee.com/openharmony-dg/vendor_orangepi  vendor/orangepi -b OpenHarmony-4.1-Release
 
-git clone  https://gitee.com/openharmony-dg/device_soc_rockchip -b OpenHarmony-4.0-Release
+git clone  https://gitee.com/openharmony-dg/device_soc_rockchip -b OpenHarmony-4.1-Release
 
-git clone  https://gitee.com/openharmony-dg/rockchip_linux_5.10 kernel/linux/linux-5.10_rockchip -b OpenHarmony-4.0-Release
+git clone  https://gitee.com/openharmony-dg/rockchip_linux_5.10 kernel/linux/linux-5.10_rockchip -b OpenHarmony-4.1-Release
 
 > 重要说明
 > 1. [device_soc_rockchip](https://gitee.com/openharmony-dg/device_soc_rockchip)仓与rk3588s相关适配目录，替换到device/soc/rockchip目录下即可;
