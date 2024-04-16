@@ -18,12 +18,12 @@ ohos_prebuilt_etc("init.cfg") {
   module_install_dir = "etc"
   install_images = [ "system" ]
   install_enable = true
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
 }
 
 ohos_prebuilt_etc("init.rk3588.cfg") {
   source = "init.rk3588.cfg"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_images = [ chipset_base_dir ]
   install_enable = true
 }
@@ -32,27 +32,27 @@ ohos_prebuilt_executable("init.rk3588.sh") {
   source = "init.rk3588.sh"
   module_install_dir = "bin"
   install_images = [ "vendor" ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_enable = true
 }
 
 ohos_prebuilt_etc("init.rk3588.usb.cfg") {
   source = "init.rk3588.usb.cfg"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_images = [ chipset_base_dir ]
   install_enable = true
 }
 
 ohos_prebuilt_etc("fstab.rk3588") {
   source = "fstab.rk3588"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_images = [ vendor_base_dir ]
   install_enable = true
 }
 
 ohos_prebuilt_etc("selinux_config") {
   source = "selinux/config"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   module_install_dir = "etc/selinux"
   install_images = [ "system" ]
   install_enable = true
@@ -65,20 +65,20 @@ ohos_prebuilt_etc("sysctl.conf") {
     "ramdisk",
   ]
   install_enable = true
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
 }
 
 ohos_prebuilt_etc("param_for_display") {
   source = "etc/param/display.para"
   relative_install_dir = "param"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
 }
 
 ohos_prebuilt_etc("param_for_ohos") {
   source = "etc/param/ohos.para"
   install_images = [ "system" ]
   relative_install_dir = "param"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
 }
 
 group("init_configs") {

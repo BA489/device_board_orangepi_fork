@@ -1,7 +1,7 @@
 {
-    "subsystem": "rockchip_products",
+    "subsystem": "device_orangepi_5b",
     "parts": {
-        "rockchip_products": {
+        "device_orangepi_5b": {
             "module_list": [
                 "//vendor/orangepi/${product_name}/bluetooth:libbt_vendor",
                 "//vendor/orangepi/${product_name}/bluetooth:BCM4362A2.hcd",

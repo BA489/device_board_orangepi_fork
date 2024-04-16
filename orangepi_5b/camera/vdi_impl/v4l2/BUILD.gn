@@ -28,8 +28,8 @@ ohos_prebuilt_etc("camera_host_config.hcb") {
   source = hcs_outputs[0]
   relative_install_dir = "hdfconfig"
   install_images = [ chipset_base_dir ]
-  subsystem_name = "rockchip_products"
-  part_name = "rockchip_products"
+  subsystem_name = "device_orangepi_5b"
+  part_name = "device_orangepi_5b"
 }
 
 hc_gen_c("generate_source") {
@@ -89,8 +89,8 @@ ohos_prebuilt_etc("ipp_algo_config.hcb") {
   source = hcs_outputs[0]
   relative_install_dir = "hdfconfig"
   install_images = [ chipset_base_dir ]
-  subsystem_name = "rockchip_products"
-  part_name = "rockchip_products"
+  subsystem_name = "device_orangepi_5b"
+  part_name = "device_orangepi_5b"
 }
 
 config("example_config") {
@@ -238,8 +238,8 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   ]
   public_configs = [ ":camhdi_impl_config" ]
   install_images = [ chipset_base_dir ]
-  subsystem_name = "rockchip_products"
-  part_name = "rockchip_products"
+  subsystem_name = "device_orangepi_5b"
+  part_name = "device_orangepi_5b"
 }
 
 ohos_static_library("camera_host_vdi_impl_1.0_static") {
@@ -294,8 +294,8 @@ ohos_static_library("camera_host_vdi_impl_1.0_static") {
   ]
 
   public_configs = [ ":camhdi_impl_config" ]
-  subsystem_name = "rockchip_products"
-  part_name = "rockchip_products"
+  subsystem_name = "device_orangepi_5b"
+  part_name = "device_orangepi_5b"
 }
 
   ohos_shared_library("camera_pipeline_config") {
@@ -306,8 +306,8 @@ ohos_static_library("camera_host_vdi_impl_1.0_static") {
     include_dirs =
         [ "$camera_path/pipeline_core/pipeline_impl/src/strategy/config" ]
     install_images = [ chipset_base_dir ]
-    subsystem_name = "rockchip_products"
-    part_name = "rockchip_products"
+    subsystem_name = "device_orangepi_5b"
+    part_name = "device_orangepi_5b"
   }
 
   group("camera_board_vdi_impl") {

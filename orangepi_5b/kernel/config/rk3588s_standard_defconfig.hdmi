@@ -3453,7 +3453,7 @@ CONFIG_VIDEO_OV7251=y
 # CONFIG_VIDEO_OV9640 is not set
 # CONFIG_VIDEO_OV9650 is not set
 # CONFIG_VIDEO_OV12D2Q is not set
-CONFIG_VIDEO_OV13850=y
+CONFIG_VIDEO_OV13855=y
 # CONFIG_VIDEO_OV13855 is not set
 # CONFIG_VIDEO_OV13858 is not set
 # CONFIG_VIDEO_VS6624 is not set
@@ -7113,3 +7113,5 @@ CONFIG_LKDTM=y
 # CONFIG_MEMTEST is not set
 # end of Kernel Testing and Coverage
 # end of Kernel hacking
+
+CONFIG_DHT22=m

@@ -21,7 +21,7 @@ ohos_shared_library("rebootloader") {
   } else {
     module_install_dir = "lib/init/autorun"
   }
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_enable = true
   install_images = [ "system" ]
 }

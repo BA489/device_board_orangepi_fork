@@ -17,7 +17,7 @@ ohos_prebuilt_executable("modetest") {
   source = "tools/bin/modetest"
   module_install_dir = "bin"
   install_images = [ "vendor" ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_enable = true
 }
 
@@ -25,7 +25,7 @@ ohos_prebuilt_executable("busybox") {
   source = "tools/bin/busybox"
   module_install_dir = "bin"
   install_images = [ "vendor" ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_enable = true
 }
 
@@ -33,7 +33,7 @@ ohos_prebuilt_executable("media-ctl") {
   source = "tools/bin/media-ctl"
   module_install_dir = "bin"
   install_images = [ "vendor" ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_enable = true
 }
 
@@ -41,7 +41,7 @@ ohos_prebuilt_executable("v4l2-ctl") {
   source = "tools/bin/v4l2-ctl"
   module_install_dir = "bin"
   install_images = [ "vendor" ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   install_enable = true
 }
 
@@ -49,35 +49,35 @@ ohos_prebuilt_etc("browser_hap") {
   source = "hap/Browser.hap"
   module_install_dir = "app/org.ohos.browser.cm"
   install_enable = true
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   subsystem_name = "applications"
 }
 
 ohos_prebuilt_etc("filemanager_hap") {
   source = "hap/FileManager.hap"
   module_install_dir = "app/com.ohos.filemanager"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   subsystem_name = "applications"
 }
 
 ohos_prebuilt_etc("launcher_hap") {
   source = "hap/Launcher.hap"
   module_install_dir = "app/com.ohos.launcher"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   subsystem_name = "applications"
 }
 
 ohos_prebuilt_etc("launcher_settings_hap") {
   source = "hap/Launcher_Settings.hap"
   module_install_dir = "app/com.ohos.launcher"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   subsystem_name = "applications"
 }
 
 ohos_prebuilt_etc("settings_hap") {
   source = "hap/Settings.hap"
   module_install_dir = "app/com.ohos.settings"
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
   subsystem_name = "applications"
 }
 

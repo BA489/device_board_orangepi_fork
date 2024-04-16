@@ -59,7 +59,7 @@ ohos_shared_library("audio_capture_adapter") {
   }
 
   install_images = [ chipset_base_dir ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
 }
 
 ohos_shared_library("audio_render_adapter") {
@@ -104,7 +104,7 @@ ohos_shared_library("audio_render_adapter") {
   }
 
   install_images = [ chipset_base_dir ]
-  part_name = "rockchip_products"
+  part_name = "device_orangepi_5b"
 }
 
 group("audio") {

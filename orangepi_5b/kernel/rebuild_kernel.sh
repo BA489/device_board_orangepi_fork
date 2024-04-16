@@ -26,7 +26,7 @@ export PRODUCT_COMPANY=${8}
 
 KERNEL_SRC_TMP_PATH=${ROOT_DIR}/out/kernel/src_tmp/linux-5.10
 KERNEL_OBJ_TMP_PATH=${ROOT_DIR}/out/kernel/OBJ/linux-5.10
-KERNEL_SOURCE=${ROOT_DIR}/kernel/linux/linux-5.10_rockchip
+KERNEL_SOURCE=${ROOT_DIR}/kernel/linux/linux-orangepi
 KERNEL_PATCH_PATH=${ROOT_DIR}/device/board/orangepi/orangepi_5b/kernel/kernel_patch/linux-5.10
 KERNEL_PATCH=${ROOT_DIR}/device/board/orangepi/orangepi_5b/kernel/kernel_patch/linux-5.10/orangepi_5b_patch/kernel.patch
 HDF_PATCH=${ROOT_DIR}/device/board/orangepi/orangepi_5b/kernel/kernel_patch/linux-5.10/orangepi_5b_patch/hdf.patch

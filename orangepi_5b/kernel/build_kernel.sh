@@ -15,8 +15,6 @@
 
 set -e
 
-
-
 pushd ${1}
 ROOT_DIR=${5}
 export PRODUCT_PATH=${4}
@@ -26,7 +24,7 @@ export PRODUCT_COMPANY=${8}
 
 KERNEL_SRC_TMP_PATH=${ROOT_DIR}/out/kernel/src_tmp/linux-5.10
 KERNEL_OBJ_TMP_PATH=${ROOT_DIR}/out/kernel/OBJ/linux-5.10
-KERNEL_SOURCE=${ROOT_DIR}/kernel/linux/linux-5.10_rockchip
+KERNEL_SOURCE=${ROOT_DIR}/kernel/linux/linux-orangepi
 KERNEL_PATCH_PATH=${ROOT_DIR}/device/board/orangepi/orangepi_5b/kernel/kernel_patch/linux-5.10
 KERNEL_PATCH=${ROOT_DIR}/device/board/orangepi/orangepi_5b/kernel/kernel_patch/linux-5.10/orangepi_5b_patch/kernel.patch
 HDF_PATCH=${ROOT_DIR}/device/board/orangepi/orangepi_5b/kernel/kernel_patch/linux-5.10/orangepi_5b_patch/hdf.patch
@@ -56,7 +54,7 @@ cp -rf ${3}/kernel/make*.sh ${KERNEL_SRC_TMP_PATH}/
 cp -rf ${3}/kernel/drivers/dts/* ${KERNEL_SRC_TMP_PATH}/arch/arm64/boot/dts/rockchip
 
 #config
-cp -rf ${KERNEL_CONFIG_FILE} ${KERNEL_SRC_TMP_PATH}/arch/arm64/configs/rockchip_linux_defconfig
+cp -rfL ${KERNEL_CONFIG_FILE} ${KERNEL_SRC_TMP_PATH}/arch/arm64/configs/rockchip_linux_defconfig
 
 if [ "enable_ramdisk" == "${9}" ]; then
     ./make-ohos.sh ORANGEPI-5B enable_ramdisk
