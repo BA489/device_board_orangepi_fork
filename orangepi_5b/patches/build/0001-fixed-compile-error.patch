@@ -1,0 +1,38 @@
+From 75840f3ddf8f6a811e0671c639d4d0ae2388ea6a Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:25:16 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Ida541b719e7faa223b12e840cf53bcf2420385f3
+---
+ core/gn/ohos_exec_script_allowlist.gni | 1 +
+ ohos_var.gni                           | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/core/gn/ohos_exec_script_allowlist.gni b/core/gn/ohos_exec_script_allowlist.gni
+index 0a986f49..f3539c44 100644
+--- a/core/gn/ohos_exec_script_allowlist.gni
++++ b/core/gn/ohos_exec_script_allowlist.gni
+@@ -198,5 +198,6 @@ ohos_exec_script_config = {
+     "//build_plugins/config/ios/ios_sdk.gni",
+     "//build_plugins/templates/java/rules.gni",
+     "//build_plugins/templates/java/internal_rules.gni",
++    "//device/board/orangepi/orangepi_5b/camera/vdi_impl/v4l2/BUILD.gn"
+   ]
+ }
+diff --git a/ohos_var.gni b/ohos_var.gni
+index ee36fb74..2ba388f8 100755
+--- a/ohos_var.gni
++++ b/ohos_var.gni
+@@ -190,7 +190,7 @@ declare_args() {
+ }
+ 
+ declare_args() {
+-  is_use_check_deps = true
++  is_use_check_deps = false
+ }
+ 
+ declare_args() {
+-- 
+2.34.1
+

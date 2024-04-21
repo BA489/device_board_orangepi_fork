@@ -1,0 +1,35 @@
+From 93520b53a896e8f5472395f80f58af782809f35b Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:07:57 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I925b711af456967b969ab7653df3c7bb1c2ce957
+---
+ adapter/ohos/osal/js_accessibility_manager.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/adapter/ohos/osal/js_accessibility_manager.cpp b/adapter/ohos/osal/js_accessibility_manager.cpp
+index abb522ae13..36f57a3f5c 100644
+--- a/adapter/ohos/osal/js_accessibility_manager.cpp
++++ b/adapter/ohos/osal/js_accessibility_manager.cpp
+@@ -2051,7 +2051,7 @@ bool JsAccessibilityManager::SendAccessibilitySyncEvent(
+     if (!isEnabled) {
+         return false;
+     }
+-    TAG_LOGD(AceLogTag::ACE_ACCESSIBILITY, "send accessibility event:%{public}d aid:%{public}lld",
++    TAG_LOGD(AceLogTag::ACE_ACCESSIBILITY, "send accessibility event:%{public}d aid:%{public}ld",
+         eventInfo.GetEventType(), static_cast<int64_t>(eventInfo.GetAccessibilityId()));
+     return client->SendEvent(eventInfo);
+ }
+@@ -2086,7 +2086,7 @@ bool JsAccessibilityManager::TransferAccessibilityAsyncEvent(
+     AccessibilityEventInfo eventInfoNew = eventInfo;
+     eventInfoNew.SetSource(uiExtensionOffset + eventInfo.GetViewId());
+ #endif
+-    TAG_LOGD(AceLogTag::ACE_ACCESSIBILITY, "send accessibility event:%{public}d aid:%{public}lld",
++    TAG_LOGD(AceLogTag::ACE_ACCESSIBILITY, "send accessibility event:%{public}d aid:%{public}ld",
+         eventInfoNew.GetEventType(), static_cast<int64_t>(eventInfoNew.GetAccessibilityId()));
+     return client->SendEvent(eventInfoNew);
+ }
+-- 
+2.34.1
+

@@ -1,0 +1,33 @@
+From 4193d0051efc2c1d35628cd28cfaac5e3b5cc5f9 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:51:35 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I3a51bef12ec11b0313273860a15d96ae80376c23
+---
+ device/plugins/native_daemon/src/call_stack.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/device/plugins/native_daemon/src/call_stack.cpp b/device/plugins/native_daemon/src/call_stack.cpp
+index 5868dd10..3a665045 100644
+--- a/device/plugins/native_daemon/src/call_stack.cpp
++++ b/device/plugins/native_daemon/src/call_stack.cpp
+@@ -521,7 +521,7 @@ bool CallStack::DoUnwind2(const VirtualThread &thread, std::vector<CallFrame> &c
+     regs->SetRegsData(tempRegs);
+ #else
+     std::shared_ptr<DfxRegs> regs = std::make_shared<DfxRegsArm64>();
+-    regs->SetRegsData(static_cast<uintptr_t*>(regs_), regsNum_);
++    regs->SetRegsData(static_cast<uintptr_t*>((void*)regs_), regsNum_);
+ #endif
+ 
+     unwinder->SetRegs(regs);
+@@ -662,4 +662,4 @@ CallStack::~CallStack()
+ }
+ } // namespace NativeDaemon
+ } // namespace Developtools
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+-- 
+2.34.1
+

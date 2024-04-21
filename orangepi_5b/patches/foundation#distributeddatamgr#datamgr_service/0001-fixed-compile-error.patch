@@ -1,0 +1,33 @@
+From de2e4feb2475e4f488da0b166425092849cf7955 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:48:17 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Ibb6147873c9b9c6e76a9be7bb2d9d66b4ed547dc
+---
+ .../service/data_share/data_share_service_stub.cpp            | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/services/distributeddataservice/service/data_share/data_share_service_stub.cpp b/services/distributeddataservice/service/data_share/data_share_service_stub.cpp
+index 593ee190..8ddd8896 100644
+--- a/services/distributeddataservice/service/data_share/data_share_service_stub.cpp
++++ b/services/distributeddataservice/service/data_share/data_share_service_stub.cpp
+@@ -333,7 +333,7 @@ int DataShareServiceStub::OnRemoteRequest(uint32_t code, MessageParcel &data, Me
+         auto finish = std::chrono::steady_clock::now();
+         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(finish - start);
+         if (duration >= TIME_THRESHOLD) {
+-            ZLOGW("over time, code:%{public}u callingPid:%{public}d, cost:%{public}" PRIi64 "ms",
++            ZLOGW("over time, code:%{public}u callingPid:%{public}d, cost:%{public}l" PRIi64 "ms",
+                 code, callingPid, duration.count());
+         }
+     }
+@@ -382,4 +382,4 @@ int32_t DataShareServiceStub::OnRemoteIsSilentProxyEnable(MessageParcel &data, M
+     return E_OK;
+ }
+ } // namespace DataShare
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+-- 
+2.34.1
+

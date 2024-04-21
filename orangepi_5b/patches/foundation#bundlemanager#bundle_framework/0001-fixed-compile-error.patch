@@ -1,0 +1,33 @@
+From 784566c0ad0b0681eaa3048536a7ee2d9f236d79 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:41:11 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I6268fdd61fc1b282a40751ed028df4ceb47c26c2
+---
+ services/bundlemgr/src/installd/installd_operator.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/services/bundlemgr/src/installd/installd_operator.cpp b/services/bundlemgr/src/installd/installd_operator.cpp
+index 8ad37561a..7ca711fe2 100644
+--- a/services/bundlemgr/src/installd/installd_operator.cpp
++++ b/services/bundlemgr/src/installd/installd_operator.cpp
+@@ -810,7 +810,7 @@ int64_t InstalldOperator::GetDiskUsageFromQuota(const int32_t uid)
+         APP_LOGE("Failed to get quotactl, errno: %{public}d", errno);
+         return 0;
+     }
+-    APP_LOGD("get disk usage from quota, uid: %{public}d, usage: %{public}llu", uid, dq.dqb_curspace);
++    APP_LOGD("get disk usage from quota, uid: %{public}d, usage: %{public}lu", uid, dq.dqb_curspace);
+     return dq.dqb_curspace;
+ }
+ 
+@@ -1878,4 +1878,4 @@ int32_t InstalldOperator::CallIoctl(int32_t flag, int32_t associatedFlag, int32_
+ }
+ #endif
+ }  // namespace AppExecFwk
+-}  // namespace OHOS
+\ No newline at end of file
++}  // namespace OHOS
+-- 
+2.34.1
+

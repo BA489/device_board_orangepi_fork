@@ -1,47 +1,50 @@
-# device_board_orangepi
+# OpenHarmony for Orange Pi 5B
 
-## 介绍
+**1、源码下载**
 
-本仓用于放置orangepi开发板相关内容，各开发板的使用教程和使用详细说明可点击下表开发板名称查看。
-
-| 开发板名称                                       | SoC型号           | 应用领域                                   | 设备互联类型        |
-|:-------------------------------------------:|:---------------:|:--------------------------------------:|:-------------:|
-| [OrangePi 5B](orangepi_5b/README_zh.md) | `Rockchip RK3588S` | 智能家居、AI人脸识别、工业控制、智慧车载、多媒体处理、AI边缘计算、物联网 | 有线以太网、WIFI、蓝牙 |
-
-#### 开发板简介
-
-- [OrangePi 5B](https://gitee.com/openharmony-dg/device_board_orangepi/blob/master/orangepi_5b/README_zh.md)
-
-OrangePi 5B是一款应用于图像处理，音视频处理和深度学习等场景的智能硬件，其主芯片采用Rockchip RK3588S芯片方案。
-RK3588S支持GPU和神经网络加速子系统，支持8K视频编解码器引擎和一流的HDR图像处理，并集成了所有标准音频/视频输入/输出接口。主系统的CPU采用大小核设计，主频高达2.2GHz，集成了四个Cortex-A76核心和两Cortex-A53核心 ，集成独立的5.0T NPU处理器。
-
-#### 开发板架构
-
-![开发板](./figures/orangepi_5b.png "OrangePi 5B")
-
-## 目录
-
+1）注册码云gitee账号并配置用户信息
 ```
-device/board/orangepi
-├── orangepi_5b             # OrangePi 5B开发板目录
-├── figures                 # 开发板或产品相关图片目录
-├── LICENSE
-├── OTA.xml
-└── README_zh.md
+git config --global user.name "yourname"
+git config --global user.email "your-email-address"
 ```
 
-## 使用说明
+2）安装码云repo工具，可以执行如下命令
 
-OrangePi 5B参考:
+```
+curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 | sudo tee /usr/local/bin/repo > /dev/null
+sudo chmod a+x /usr/local/bin/repo
+sudo ln -sf bash /bin/sh
+```
 
-- [OrangePi 5B](https://gitee.com/openharmony-dg/device_board_orangepi/blob/master/orangepi_5b/README_zh.md)
+**获取源码操作步骤**
 
-## 相关仓
+通过repo + https 下载
 
-- device_board_orangepi
+```
+repo init -u https://gitee.com/nixingfeng/ohos-orangepi.git -b OpenHarmony-4.1-Release --no-repo-verify --depth=1
+repo sync -c
+repo forall -c 'git lfs pull'
+```
 
-- [vendor_orangepi](https://gitee.com/openharmony-dg/vendor_orangepi)
+**执行prebuilts**
 
-- [device_soc_rockchip](https://gitee.com/openharmony-dg/device_soc_rockchip)
+在源码根目录下执行脚本，安装编译器及二进制工具
 
-- [kernel](https://gitee.com/openharmony-dg/orangepi_linux_5.10)
+```
+./build/prebuilts_download.sh
+```
+**2、编译**
+
+1）进入根目录，执行如下命令导入patch
+```
+./device/board/orangepi/orangepi_5b/patches/auto_patch.sh
+```
+
+2）进入根目录，执行如下命令进行编译
+```
+./build.sh --product-name orangepi_5b --ccache --no-prebuilt-sdk
+```
+
+**3、烧录**
+
+镜像输出在out/orangepi_5b/packages/phone/images目录下，使用RKDevTool工具烧录。

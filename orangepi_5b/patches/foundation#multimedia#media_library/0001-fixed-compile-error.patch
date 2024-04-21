@@ -1,0 +1,33 @@
+From b3e476324acfd689f39d018cc231412f9901edf0 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:14:52 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: If5472598453515d17ac7bed0c1e1c82b3f5690b4
+---
+ frameworks/js/src/media_asset_change_request_napi.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/frameworks/js/src/media_asset_change_request_napi.cpp b/frameworks/js/src/media_asset_change_request_napi.cpp
+index 346fa663..c77b36a9 100644
+--- a/frameworks/js/src/media_asset_change_request_napi.cpp
++++ b/frameworks/js/src/media_asset_change_request_napi.cpp
+@@ -884,7 +884,7 @@ static int SavePhotoProxyImage(const string &fileUri, sptr<CameraStandard::Defer
+         NAPI_ERR_LOG("packet pixelMap failed");
+         return E_ERR;
+     }
+-    NAPI_INFO_LOG("pack pixelMap success, packedSize: %{public}lld", packedSize);
++    NAPI_INFO_LOG("pack pixelMap success, packedSize: %{public}ld", packedSize);
+ 
+     auto ret = SaveImage(fileUri, buffer, packedSize);
+     delete[] buffer;
+@@ -1574,4 +1574,4 @@ napi_value MediaAssetChangeRequestNapi::ApplyChanges(napi_env env, napi_callback
+     return MediaLibraryNapiUtils::NapiCreateAsyncWork(env, asyncContext, "ApplyMediaAssetChangeRequest",
+         ApplyAssetChangeRequestExecute, ApplyAssetChangeRequestCompleteCallback);
+ }
+-} // namespace OHOS::Media
+\ No newline at end of file
++} // namespace OHOS::Media
+-- 
+2.34.1
+

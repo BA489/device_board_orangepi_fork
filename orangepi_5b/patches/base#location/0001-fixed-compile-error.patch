@@ -1,0 +1,26 @@
+From 064907a4c8576b58a19f27fde70e197df480c917 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:53:10 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I6c4611907fc50c7d4a124c053c0a70b249187d43
+---
+ services/location_gnss/gnss/source/gnss_ability_skeleton.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/location_gnss/gnss/source/gnss_ability_skeleton.cpp b/services/location_gnss/gnss/source/gnss_ability_skeleton.cpp
+index c73869a..08a5555 100644
+--- a/services/location_gnss/gnss/source/gnss_ability_skeleton.cpp
++++ b/services/location_gnss/gnss/source/gnss_ability_skeleton.cpp
+@@ -261,7 +261,7 @@ int GnssAbilityStub::OnRemoteRequest(uint32_t code,
+     AppIdentity identity;
+     identity.SetPid(callingPid);
+     identity.SetUid(callingUid);
+-    LBSLOGI(GNSS, "%{public}s cmd = %{public}u, flags= %{public}d, identity = %{public}s, timestamp = %{public}lld",
++    LBSLOGI(GNSS, "%{public}s cmd = %{public}u, flags= %{public}d, identity = %{public}s, timestamp = %{public}ld",
+         __func__, code, option.GetFlags(), identity.ToString().c_str(), CommonUtils::GetCurrentTimeStamp());
+ 
+     if (data.ReadInterfaceToken() != GetDescriptor()) {
+-- 
+2.34.1
+

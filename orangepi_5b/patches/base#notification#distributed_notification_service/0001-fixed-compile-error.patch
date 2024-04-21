@@ -1,0 +1,26 @@
+From afae807b19fbf41bd8db1ff3c2d335848e909156 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:58:58 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I66961fde63fe97d8787404797e6c57b0172bd5a2
+---
+ services/ans/src/reminder_data_manager.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/ans/src/reminder_data_manager.cpp b/services/ans/src/reminder_data_manager.cpp
+index e9951d4d..ceaa6abf 100644
+--- a/services/ans/src/reminder_data_manager.cpp
++++ b/services/ans/src/reminder_data_manager.cpp
+@@ -949,7 +949,7 @@ void ReminderDataManager::ShowActiveReminderExtendLocked(sptr<ReminderRequest> &
+         uint64_t tempTriggerTime = (*it)->GetTriggerTimeInMilli();
+         if (tempTriggerTime < triggerTime) {
+             ANSR_LOGE("this reminder triggerTime is less than target triggerTime. "
+-                "now trigger time is %{public}llu.", tempTriggerTime);
++                "now trigger time is %{public}lu.", tempTriggerTime);
+             continue;
+         }
+         if (tempTriggerTime - triggerTime > ReminderRequest::SAME_TIME_DISTINGUISH_MILLISECONDS) {
+-- 
+2.34.1
+

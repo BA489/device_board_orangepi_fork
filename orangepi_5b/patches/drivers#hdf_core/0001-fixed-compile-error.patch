@@ -1,0 +1,26 @@
+From 385c8330b71a3d79e5d313c9a5ab1d644a6a6e1f Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:26:49 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I6f3cccf5e171e18a096838e62fc666862f32788a
+---
+ adapter/khdf/linux/osal/src/osal_time.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/adapter/khdf/linux/osal/src/osal_time.c b/adapter/khdf/linux/osal/src/osal_time.c
+index 20d121ec..42e5cbbe 100644
+--- a/adapter/khdf/linux/osal/src/osal_time.c
++++ b/adapter/khdf/linux/osal/src/osal_time.c
+@@ -98,7 +98,7 @@ void OsalMDelay(uint32_t ms)
+ }
+ EXPORT_SYMBOL(OsalMDelay);
+ 
+-uint64_t OsalGetSysTimeMs()
++uint64_t OsalGetSysTimeMs(void)
+ {
+ 	OsalTimespec time;
+ 
+-- 
+2.34.1
+

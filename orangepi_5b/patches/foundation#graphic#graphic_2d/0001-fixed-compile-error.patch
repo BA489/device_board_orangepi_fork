@@ -1,0 +1,90 @@
+From ea0aa524cd004369be2138cbb68f002e2403deb9 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:50:03 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I049bf9c2686933ac34912b0fba8ef8b37875d983
+---
+ .../2d_graphics/src/drawing/recording/draw_cmd_list.cpp       | 2 +-
+ .../render_service/core/pipeline/rs_hardware_thread.cpp       | 2 +-
+ .../render_service_base/src/platform/ohos/rs_jank_stats.cpp   | 2 +-
+ .../core/pipeline/rs_render_thread_visitor.cpp                | 2 +-
+ .../modules/render_service_client/core/ui/rs_surface_node.cpp | 4 ++--
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/rosen/modules/2d_graphics/src/drawing/recording/draw_cmd_list.cpp b/rosen/modules/2d_graphics/src/drawing/recording/draw_cmd_list.cpp
+index bf7772e5a..28e720411 100644
+--- a/rosen/modules/2d_graphics/src/drawing/recording/draw_cmd_list.cpp
++++ b/rosen/modules/2d_graphics/src/drawing/recording/draw_cmd_list.cpp
+@@ -192,7 +192,7 @@ std::string DrawCmdList::GetOpsWithDesc() const
+         desc += typeOpDes[item->GetType()];
+         desc += "\n";
+     }
+-    LOGI("DrawCmdList::GetOpsWithDesc %{public}s, opitem sz: %{public}u", desc.c_str(), drawOpItems_.size());
++    LOGI("DrawCmdList::GetOpsWithDesc %{public}s, opitem sz: %{public}lu", desc.c_str(), drawOpItems_.size());
+     return desc;
+ }
+ 
+diff --git a/rosen/modules/render_service/core/pipeline/rs_hardware_thread.cpp b/rosen/modules/render_service/core/pipeline/rs_hardware_thread.cpp
+index dc99a5e2f..011e88b44 100644
+--- a/rosen/modules/render_service/core/pipeline/rs_hardware_thread.cpp
++++ b/rosen/modules/render_service/core/pipeline/rs_hardware_thread.cpp
+@@ -299,7 +299,7 @@ void RSHardwareThread::ExecuteSwitchRefreshRate(uint32_t refreshRate)
+             static_cast<int>(id), refreshRate);
+         int32_t status = hgmCore.SetScreenRefreshRate(id, 0, refreshRate);
+         if (status < EXEC_SUCCESS) {
+-            RS_LOGD("RSHardwareThread: failed to set refreshRate %{public}d, screenId %{public}llu", refreshRate, id);
++            RS_LOGD("RSHardwareThread: failed to set refreshRate %{public}d, screenId %{public}lu", refreshRate, id);
+         }
+     }
+ }
+diff --git a/rosen/modules/render_service_base/src/platform/ohos/rs_jank_stats.cpp b/rosen/modules/render_service_base/src/platform/ohos/rs_jank_stats.cpp
+index 9236a63bf..78f693c30 100644
+--- a/rosen/modules/render_service_base/src/platform/ohos/rs_jank_stats.cpp
++++ b/rosen/modules/render_service_base/src/platform/ohos/rs_jank_stats.cpp
+@@ -137,7 +137,7 @@ void RSJankStats::SetRSJankStats()
+         return;
+     }
+     if (missedVsync >= VSYNC_JANK_LOG_THRESHOLED) {
+-        ROSEN_LOGI("RSJankStats::SetJankStats jank frames %{public}lld", missedVsync);
++        ROSEN_LOGI("RSJankStats::SetJankStats jank frames %{public}ld", missedVsync);
+     }
+     size_t type = JANK_FRAME_INVALID;
+     if (missedVsync < 6) {                                       // JANK_FRAME_6_FREQ   : (0,6)
+diff --git a/rosen/modules/render_service_client/core/pipeline/rs_render_thread_visitor.cpp b/rosen/modules/render_service_client/core/pipeline/rs_render_thread_visitor.cpp
+index 7d23d2a98..d1602cfd2 100644
+--- a/rosen/modules/render_service_client/core/pipeline/rs_render_thread_visitor.cpp
++++ b/rosen/modules/render_service_client/core/pipeline/rs_render_thread_visitor.cpp
+@@ -795,7 +795,7 @@ void RSRenderThreadVisitor::ProcessSurfaceViewInRT(RSSurfaceRenderNode& node)
+     const auto& property = node.GetRenderProperties();
+     sptr<Surface> surface = SurfaceUtils::GetInstance()->GetSurface(node.GetSurfaceId());
+     if (surface == nullptr) {
+-        RS_LOGE("RSRenderThreadVisitor::ProcessSurfaceViewInRT nodeId is %llu cannot find surface by surfaceId %llu",
++        RS_LOGE("RSRenderThreadVisitor::ProcessSurfaceViewInRT nodeId is %lu cannot find surface by surfaceId %lu",
+             node.GetId(), node.GetSurfaceId());
+         return;
+     }
+diff --git a/rosen/modules/render_service_client/core/ui/rs_surface_node.cpp b/rosen/modules/render_service_client/core/ui/rs_surface_node.cpp
+index 7866a964e..65da3b1e7 100644
+--- a/rosen/modules/render_service_client/core/ui/rs_surface_node.cpp
++++ b/rosen/modules/render_service_client/core/ui/rs_surface_node.cpp
+@@ -486,14 +486,14 @@ bool RSSurfaceNode::CreateNodeAndSurface(const RSSurfaceRenderNodeConfig& config
+ #ifndef ROSEN_CROSS_PLATFORM
+         sptr<Surface> surface = SurfaceUtils::GetInstance()->GetSurface(surfaceId);
+         if (surface == nullptr) {
+-            ROSEN_LOGE("RSSurfaceNode::CreateNodeAndSurface nodeId is %llu cannot find surface by surfaceId %llu",
++            ROSEN_LOGE("RSSurfaceNode::CreateNodeAndSurface nodeId is %lu cannot find surface by surfaceId %lu",
+                 GetId(), surfaceId);
+             return false;
+         }
+         surface_ = std::static_pointer_cast<RSRenderServiceClient>(
+             RSIRenderClient::CreateRenderServiceClient())->CreateRSSurface(surface);
+         if (surface_ == nullptr) {
+-            ROSEN_LOGE("RSSurfaceNode::CreateNodeAndSurface nodeId is %llu creat RSSurface fail", GetId());
++            ROSEN_LOGE("RSSurfaceNode::CreateNodeAndSurface nodeId is %lu creat RSSurface fail", GetId());
+             return false;
+         }
+ #endif
+-- 
+2.34.1
+

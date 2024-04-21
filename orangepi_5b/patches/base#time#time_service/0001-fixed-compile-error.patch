@@ -1,0 +1,33 @@
+From 1fd9fd78fff61c6f1d06820c483deb17d0d0b315 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:02:40 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I633a7612152810e165659aae3c11d5072abdb352
+---
+ services/time/src/ntp_update_time.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/services/time/src/ntp_update_time.cpp b/services/time/src/ntp_update_time.cpp
+index b286af1..7577c82 100644
+--- a/services/time/src/ntp_update_time.cpp
++++ b/services/time/src/ntp_update_time.cpp
+@@ -259,7 +259,7 @@ bool NtpUpdateTime::IsValidNITZTime()
+     }
+     auto bootTimeNano = steady_clock::now().time_since_epoch().count();
+     auto bootTimeMilli = bootTimeNano / NANO_TO_MILLISECOND;
+-    TIME_HILOGI(TIME_MODULE_SERVICE, "nitz update time: %{public}" PRIu64 " currentTime: %{public}" PRId64 "",
++    TIME_HILOGI(TIME_MODULE_SERVICE, "nitz update time: %{public}" PRIu64 " currentTime: %{public}l" PRId64 "",
+         nitzUpdateTimeMilli_, bootTimeMilli);
+     return (bootTimeMilli - static_cast<int64_t>(nitzUpdateTimeMilli_)) < DAY_TO_MILLISECOND;
+ }
+@@ -377,4 +377,4 @@ uint64_t NtpUpdateTime::GetNITZUpdateTime()
+     return static_cast<uint64_t>(lastNITZUpdateTime_);
+ }
+ } // namespace MiscServices
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+-- 
+2.34.1
+

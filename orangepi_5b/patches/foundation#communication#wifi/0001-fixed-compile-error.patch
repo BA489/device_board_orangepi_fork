@@ -1,0 +1,49 @@
+From 7695568dc01c134139d2558501d09138f8b0814d Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:32:33 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I9244624bccd71dce052eaa7d939179de067da92c
+---
+ .../wifi_manage/wifi_sta_sa/wifi_device_stub.cpp              | 4 ++--
+ .../wifi_framework/wifi_toolkit/config/wifi_settings.cpp      | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/wifi/services/wifi_standard/wifi_framework/wifi_manage/wifi_sta_sa/wifi_device_stub.cpp b/wifi/services/wifi_standard/wifi_framework/wifi_manage/wifi_sta_sa/wifi_device_stub.cpp
+index f1ac7829..4e67118f 100644
+--- a/wifi/services/wifi_standard/wifi_framework/wifi_manage/wifi_sta_sa/wifi_device_stub.cpp
++++ b/wifi/services/wifi_standard/wifi_framework/wifi_manage/wifi_sta_sa/wifi_device_stub.cpp
+@@ -190,7 +190,7 @@ void WifiDeviceStub::RemoveDeviceCbDeathRecipient(const wptr<IRemoteObject> &rem
+             static_cast<void*>(deathRecipient_), static_cast<void*>(iter->second));
+         remoteObject->RemoveDeathRecipient(iter->second);
+         remoteDeathMap.erase(iter);
+-        WIFI_LOGI("remove death recipient success! remoteDeathMap.size: %{public}d.", remoteDeathMap.size());
++        WIFI_LOGI("remove death recipient success! remoteDeathMap.size: %{public}lu.", remoteDeathMap.size());
+     }
+ }
+ 
+@@ -818,7 +818,7 @@ void WifiDeviceStub::OnRegisterCallBack(uint32_t code, MessageParcel &data, Mess
+             if (iter == remoteDeathMap.end()) {
+                 std::lock_guard<std::mutex> lock(mutex_);
+                 remoteDeathMap.insert(std::make_pair(remote, deathRecipient_));
+-                WIFI_LOGI("OnRegisterCallBack, AddDeathRecipient, remote: %{public}p, remoteDeathMap.size: %{public}d",
++                WIFI_LOGI("OnRegisterCallBack, AddDeathRecipient, remote: %{public}p, remoteDeathMap.size: %{public}lu",
+                     static_cast<void*>(remote), remoteDeathMap.size());
+                 if ((remote->IsProxyObject()) && (!remote->AddDeathRecipient(deathRecipient_))) {
+                     WIFI_LOGI("AddDeathRecipient!");
+diff --git a/wifi/services/wifi_standard/wifi_framework/wifi_toolkit/config/wifi_settings.cpp b/wifi/services/wifi_standard/wifi_framework/wifi_toolkit/config/wifi_settings.cpp
+index c80a93a6..9c33483c 100644
+--- a/wifi/services/wifi_standard/wifi_framework/wifi_toolkit/config/wifi_settings.cpp
++++ b/wifi/services/wifi_standard/wifi_framework/wifi_toolkit/config/wifi_settings.cpp
+@@ -451,7 +451,7 @@ int WifiSettings::GetScanInfoList(std::vector<WifiScanInfo> &results)
+         results.push_back(*iter);
+         ++iter;
+     }
+-    LOGI("WifiSettings::GetScanInfoList size = %{public}u", results.size());
++    LOGI("WifiSettings::GetScanInfoList size = %{public}lu", results.size());
+     return 0;
+ }
+ 
+-- 
+2.34.1
+

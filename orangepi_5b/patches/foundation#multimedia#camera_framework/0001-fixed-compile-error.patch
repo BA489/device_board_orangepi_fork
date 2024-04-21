@@ -1,0 +1,33 @@
+From 9f2724ed2626a9a524f10c0cccd14e2bb91361f1 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:13:28 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Id734c60af7e3b0d185fad24f563d5740a8758748
+---
+ frameworks/js/camera_napi/src/output/photo_output_napi.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/frameworks/js/camera_napi/src/output/photo_output_napi.cpp b/frameworks/js/camera_napi/src/output/photo_output_napi.cpp
+index 25caa3c7..b588a6cc 100644
+--- a/frameworks/js/camera_napi/src/output/photo_output_napi.cpp
++++ b/frameworks/js/camera_napi/src/output/photo_output_napi.cpp
+@@ -98,7 +98,7 @@ void PhotoListener::ExecuteDeferredPhoto(sptr<SurfaceBuffer> surfaceBuffer) cons
+     int32_t deferredProcessingType;
+     surfaceBuffer->GetExtraData()->ExtraGet(OHOS::Camera::imageId, imageId);
+     surfaceBuffer->GetExtraData()->ExtraGet(OHOS::Camera::deferredProcessingType, deferredProcessingType);
+-    MEDIA_ERR_LOG("PhotoListener ExecuteDeferredPhoto imageId:%{public}lld, deferredProcessingType:%{public}d",
++    MEDIA_ERR_LOG("PhotoListener ExecuteDeferredPhoto imageId:%{public}ld, deferredProcessingType:%{public}d",
+         imageId, deferredProcessingType);
+ 
+     // create pixelMap to encode
+@@ -1635,4 +1635,4 @@ napi_value PhotoOutputNapi::Off(napi_env env, napi_callback_info info)
+     return ListenerTemplate<PhotoOutputNapi>::Off(env, info);
+ }
+ } // namespace CameraStandard
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+-- 
+2.34.1
+

@@ -1,0 +1,35 @@
+From 2debf93314fa0f53bb3a6636a2577397d682c950 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:04:18 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Ifce62b98f75e8bb344a1bddeee6f72a130f9e0d8
+---
+ .../ecological_rule/ability_ecological_rule_mgr_service.cpp   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/services/abilitymgr/src/ecological_rule/ability_ecological_rule_mgr_service.cpp b/services/abilitymgr/src/ecological_rule/ability_ecological_rule_mgr_service.cpp
+index 529ae4010..cf7737ccd 100644
+--- a/services/abilitymgr/src/ecological_rule/ability_ecological_rule_mgr_service.cpp
++++ b/services/abilitymgr/src/ecological_rule/ability_ecological_rule_mgr_service.cpp
+@@ -116,7 +116,7 @@ int32_t AbilityEcologicalRuleMgrServiceClient::EvaluateResolveInfos(const AAFwk:
+     }
+     int32_t res = ecologicalRuleMgrServiceProxy_->EvaluateResolveInfos(want, callerInfo, type, abilityInfos);
+     int64_t cost = GetCurrentTimeMicro() - start;
+-    HILOG_DEBUG("[ERMS-DFX] EvaluateResolveInfos interface cost %{public}lld mirco seconds.", cost);
++    HILOG_DEBUG("[ERMS-DFX] EvaluateResolveInfos interface cost %{public}ld mirco seconds.", cost);
+     return res;
+ }
+ 
+@@ -141,7 +141,7 @@ int32_t AbilityEcologicalRuleMgrServiceClient::QueryStartExperience(const OHOS::
+             rule.isAllow, rule.sceneCode.c_str(), (*(rule.replaceWant)).ToString().c_str());
+     }
+     int64_t cost = GetCurrentTimeMicro() - start;
+-    HILOG_DEBUG("[ERMS-DFX] QueryStartExperience interface cost %{public}lld mirco seconds.", cost);
++    HILOG_DEBUG("[ERMS-DFX] QueryStartExperience interface cost %{public}ld mirco seconds.", cost);
+     return res;
+ }
+ 
+-- 
+2.34.1
+

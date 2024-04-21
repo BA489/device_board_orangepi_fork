@@ -1,0 +1,26 @@
+From f0fb8f726a050143639e76206b83f58a7412d2ec Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:37:40 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I69ac088c49c5dcd177c3a8ff37e7ced7231a3d8e
+---
+ frameworks/js/napi/socket/socket_exec/src/local_socket_exec.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/frameworks/js/napi/socket/socket_exec/src/local_socket_exec.cpp b/frameworks/js/napi/socket/socket_exec/src/local_socket_exec.cpp
+index d668627e..b5101646 100644
+--- a/frameworks/js/napi/socket/socket_exec/src/local_socket_exec.cpp
++++ b/frameworks/js/napi/socket/socket_exec/src/local_socket_exec.cpp
+@@ -185,7 +185,7 @@ static napi_value MakeLocalSocketMessage(napi_env env, void *param)
+     }
+     int result = memcpy_s(dataHandle, msg->len, msg->data, msg->len);
+     if (result != EOK) {
+-        NETSTACK_LOGE("memcpy err, res: %{public}d, msg: %{public}s, len: %{public}u", result,
++        NETSTACK_LOGE("memcpy err, res: %{public}d, msg: %{public}s, len: %{public}lu", result,
+                       reinterpret_cast<char *>(msg->data), msg->len);
+         return NapiUtils::GetUndefined(env);
+     }
+-- 
+2.34.1
+

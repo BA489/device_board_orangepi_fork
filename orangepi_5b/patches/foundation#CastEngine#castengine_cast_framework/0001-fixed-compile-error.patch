@@ -1,0 +1,190 @@
+From d26547d265188109d97d4774a1ffefdc818e82eb Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:46:11 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Idfcee48017cb881a3fc825a4c54f01bb77e17e8c
+---
+ client/src/mirror_player.cpp                              | 4 ++--
+ client/src/stream_player.cpp                              | 4 ++--
+ service/src/cast_service_listener_impl_proxy.cpp          | 4 ++--
+ service/src/device_manager/src/discovery_manager.cpp      | 2 +-
+ .../src/channel/src/softbus/softbus_connection.cpp        | 6 +++---
+ .../src/local/src/cast_local_file_channel_client.cpp      | 4 ++--
+ .../src/local/src/cast_local_file_channel_server.cpp      | 8 ++++----
+ .../src/stream/src/local/src/local_data_source.cpp        | 2 +-
+ 8 files changed, 17 insertions(+), 17 deletions(-)
+
+diff --git a/client/src/mirror_player.cpp b/client/src/mirror_player.cpp
+index 379ffd5..ac40553 100644
+--- a/client/src/mirror_player.cpp
++++ b/client/src/mirror_player.cpp
+@@ -59,7 +59,7 @@ int32_t MirrorPlayer::SetSurface(const std::string &surfaceId)
+ 
+     sptr<Surface> surface = SurfaceUtils::GetInstance()->GetSurface(surfaceUniqueId);
+     if (!surface) {
+-        CLOGE("surface is null, surface uniqueId %llu", surfaceUniqueId);
++        CLOGE("surface is null, surface uniqueId %lu", surfaceUniqueId);
+         return CAST_ENGINE_ERROR;
+     }
+     sptr<IBufferProducer> producer = surface->GetProducer();
+@@ -102,4 +102,4 @@ int32_t MirrorPlayer::ResizeVirtualScreen(uint32_t width, uint32_t height)
+ 
+ } // namespace CastEngineClient
+ } // namespace CastEngine
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+diff --git a/client/src/stream_player.cpp b/client/src/stream_player.cpp
+index c2d4a47..36ac00b 100644
+--- a/client/src/stream_player.cpp
++++ b/client/src/stream_player.cpp
+@@ -61,7 +61,7 @@ int32_t StreamPlayer::SetSurface(const std::string &surfaceId)
+ 
+     sptr<Surface> surface = SurfaceUtils::GetInstance()->GetSurface(surfaceUniqueId);
+     if (!surface) {
+-        CLOGE("surface is null, surface uniqueId %llu", surfaceUniqueId);
++        CLOGE("surface is null, surface uniqueId %lu", surfaceUniqueId);
+         return CAST_ENGINE_ERROR;
+     }
+     sptr<IBufferProducer> producer = surface->GetProducer();
+@@ -193,4 +193,4 @@ int32_t StreamPlayer::Release()
+ }
+ } // namespace CastEngineClient
+ } // namespace CastEngine
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+diff --git a/service/src/cast_service_listener_impl_proxy.cpp b/service/src/cast_service_listener_impl_proxy.cpp
+index 1c94af3..24c3643 100644
+--- a/service/src/cast_service_listener_impl_proxy.cpp
++++ b/service/src/cast_service_listener_impl_proxy.cpp
+@@ -50,7 +50,7 @@ bool FillCastRemoteDevices(MessageParcel &data, const std::vector<CastRemoteDevi
+         return false;
+     }
+     if (!data.WriteInt32(static_cast<int32_t>(size))) {
+-        CLOGE("Failed to write the device size:%u", size);
++        CLOGE("Failed to write the device size:%lu", size);
+         return false;
+     }
+     for (auto &device : devices) {
+@@ -126,4 +126,4 @@ void CastServiceListenerImplProxy::OnDeviceOffline(const std::string &deviceId)
+ }
+ } // namespace CastEngineService
+ } // namespace CastEngine
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+diff --git a/service/src/device_manager/src/discovery_manager.cpp b/service/src/device_manager/src/discovery_manager.cpp
+index 384dd66..df5daf8 100644
+--- a/service/src/device_manager/src/discovery_manager.cpp
++++ b/service/src/device_manager/src/discovery_manager.cpp
+@@ -318,7 +318,7 @@ void DiscoveryManager::OnDeviceInfoFound(uint16_t subscribeId, const DmDeviceInf
+         }
+     }
+     remoteDeviceMap[newDevice] = scanCount;
+-    CLOGD("OnDeviceInfoFound out remoteDeviceMap.size: %{public}u", remoteDeviceMap.size());
++    CLOGD("OnDeviceInfoFound out remoteDeviceMap.size: %{public}lu", remoteDeviceMap.size());
+ }
+ 
+ void DiscoveryManager::NotifyDeviceIsFound(const CastInnerRemoteDevice &newDevice)
+diff --git a/service/src/session/src/channel/src/softbus/softbus_connection.cpp b/service/src/session/src/channel/src/softbus/softbus_connection.cpp
+index a20dd62..d1040fc 100644
+--- a/service/src/session/src/channel/src/softbus/softbus_connection.cpp
++++ b/service/src/session/src/channel/src/softbus/softbus_connection.cpp
+@@ -216,7 +216,7 @@ std::pair<bool, std::shared_ptr<SoftBusConnection>> SoftBusConnection::GetConnec
+  */
+ int SoftBusConnection::OnSendFileProcess(int sessionId, uint64_t bytesUpload, uint64_t bytesTotal)
+ {
+-    CLOGD("OnSendFileProcess invoked bytesUpload: %llu, bytesTotal: %llu", bytesUpload, bytesTotal);
++    CLOGD("OnSendFileProcess invoked bytesUpload: %lu, bytesTotal: %lu", bytesUpload, bytesTotal);
+     auto ret = GetConnection(sessionId);
+     if (!ret.first) {
+         CLOGE("OnSendFileProcess, Get Connection Failed, sessionId = %d.", sessionId);
+@@ -285,7 +285,7 @@ int SoftBusConnection::OnReceiveFileStarted(int sessionId, const char *files, in
+ int SoftBusConnection::OnReceiveFileProcess(int sessionId, const char *firstFile, uint64_t bytesUpload,
+     uint64_t bytesTotal)
+ {
+-    CLOGD("OnReceiveFileProcess invoked, firstFile is: %s, bytesUpload: %llu, bytesTotal: %llu", firstFile, bytesUpload,
++    CLOGD("OnReceiveFileProcess invoked, firstFile is: %s, bytesUpload: %lu, bytesTotal: %lu", firstFile, bytesUpload,
+         bytesTotal);
+     return RET_OK;
+ }
+@@ -542,4 +542,4 @@ void SoftBusConnection::SetPassiveCloseFlag(bool isPassiveClose)
+ }
+ } // namespace CastEngineService
+ } // namespace CastEngine
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+diff --git a/service/src/session/src/stream/src/local/src/cast_local_file_channel_client.cpp b/service/src/session/src/stream/src/local/src/cast_local_file_channel_client.cpp
+index 65e6e85..4fcf931 100644
+--- a/service/src/session/src/stream/src/local/src/cast_local_file_channel_client.cpp
++++ b/service/src/session/src/stream/src/local/src/cast_local_file_channel_client.cpp
+@@ -143,7 +143,7 @@ void CastLocalFileChannelClient::AddDataListener(std::shared_ptr<IDataListener>
+     }
+     std::lock_guard<std::mutex> lock(listenerLock_);
+     dataListeners_.push_back(dataListener);
+-    CLOGD("listener count %{public}u", dataListeners_.size());
++    CLOGD("listener count %{public}lu", dataListeners_.size());
+ }
+ 
+ void CastLocalFileChannelClient::RemoveDataListener(std::shared_ptr<IDataListener> dataListener)
+@@ -154,7 +154,7 @@ void CastLocalFileChannelClient::RemoveDataListener(std::shared_ptr<IDataListene
+     }
+     std::lock_guard<std::mutex> lock(listenerLock_);
+     dataListeners_.remove(dataListener);
+-    CLOGD("listener count %{public}u", dataListeners_.size());
++    CLOGD("listener count %{public}lu", dataListeners_.size());
+ }
+ 
+ bool CastLocalFileChannelClient::ProcessServerResponse(const uint8_t *buffer, unsigned int length,
+diff --git a/service/src/session/src/stream/src/local/src/cast_local_file_channel_server.cpp b/service/src/session/src/stream/src/local/src/cast_local_file_channel_server.cpp
+index 05384b4..b91ad45 100644
+--- a/service/src/session/src/stream/src/local/src/cast_local_file_channel_server.cpp
++++ b/service/src/session/src/stream/src/local/src/cast_local_file_channel_server.cpp
+@@ -214,7 +214,7 @@ int64_t CastLocalFileChannelServer::GetFileLengthByFd(int fd)
+     auto cost = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+ 
+     int64_t ret = static_cast<int64_t>(fileLen);
+-    CLOGI("file length %lld, time cost %{public}llu ms", fileLen, static_cast<uint64_t>(cost.count()));
++    CLOGI("file length %ld, time cost %{public}lu ms", fileLen, static_cast<uint64_t>(cost.count()));
+ 
+     return ret;
+ }
+@@ -326,16 +326,16 @@ void CastLocalFileChannelServer::ResponseFileDataRequest(const std::string &uri,
+ 
+ void CastLocalFileChannelServer::ResponseFileRequest(const std::string &uri, int64_t start, int64_t end)
+ {
+-    CLOGD("file: %s start: %{public}lld end: %{public}lld", uri.c_str(), start, end);
++    CLOGD("file: %s start: %{public}ld end: %{public}ld", uri.c_str(), start, end);
+ 
+     if (uri.empty()) {
+-        CLOGE("Invalid request, %{public}lld - %{public}lld", start, end);
++        CLOGE("Invalid request, %{public}ld - %{public}ld", start, end);
+         return;
+     }
+ 
+     int64_t fileLen = FindFileLengthByUri(uri);
+     if (fileLen <= 0) {
+-        CLOGE("Invalid file: %s, len %{public}lld", uri.c_str(), fileLen);
++        CLOGE("Invalid file: %s, len %{public}ld", uri.c_str(), fileLen);
+         return;
+     }
+ 
+diff --git a/service/src/session/src/stream/src/local/src/local_data_source.cpp b/service/src/session/src/stream/src/local/src/local_data_source.cpp
+index 2d425be..91152b3 100644
+--- a/service/src/session/src/stream/src/local/src/local_data_source.cpp
++++ b/service/src/session/src/stream/src/local/src/local_data_source.cpp
+@@ -121,7 +121,7 @@ int32_t LocalDataSource::ReadAt(uint32_t length, const std::shared_ptr<Media::AV
+ 
+ int32_t LocalDataSource::ReadBuffer(uint8_t *data, uint32_t length, int64_t pos)
+ {
+-    CLOGD("ReadBuffer length = %{public}d pos = %{public}lld", length, pos);
++    CLOGD("ReadBuffer length = %{public}d pos = %{public}ld", length, pos);
+     if (pos >= fileLength_) {
+         CLOGE("ReadAt EOF, pos:%{public}" PRId64 " fileLength_:%{public}" PRId64, pos, fileLength_);
+         return Media::SOURCE_ERROR_EOF;
+-- 
+2.34.1
+

@@ -1,0 +1,33 @@
+From 264b2cec401fd7ce3afb47a56f89f877e74e0782 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:39:52 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Idc0826eb5bd3e74f63e561c13653d992bf79aa37
+---
+ .../service/src/hfp_ag/hfp_ag_system_event_processer.cpp      | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/services/bluetooth/service/src/hfp_ag/hfp_ag_system_event_processer.cpp b/services/bluetooth/service/src/hfp_ag/hfp_ag_system_event_processer.cpp
+index 24c59b4..5c2172b 100644
+--- a/services/bluetooth/service/src/hfp_ag/hfp_ag_system_event_processer.cpp
++++ b/services/bluetooth/service/src/hfp_ag/hfp_ag_system_event_processer.cpp
+@@ -167,7 +167,7 @@ void HfpAgSystemEventProcesser::ProcessDialOutCallEvent(const std::string &numbe
+         return;
+     }
+ 
+-    LOG_INFO("[HFP AG]%{public}s():: dialNumber length[%{public}d], dialType[%{public}d]", __FUNCTION__,
++    LOG_INFO("[HFP AG]%{public}s():: dialNumber length[%{public}lu], dialType[%{public}d]", __FUNCTION__,
+         dialNumber.length(), dialType);
+ 
+     if (dialNumber.length() == 0) {
+@@ -448,4 +448,4 @@ std::string HfpAgSystemEventProcesser::GetEventType(int type)
+     }
+ }
+ }  // namespace bluetooth
+-}  // namespace OHOS
+\ No newline at end of file
++}  // namespace OHOS
+-- 
+2.34.1
+

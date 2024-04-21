@@ -1,0 +1,63 @@
+From 5444d41514009270ba44dcdd31e962fdb3314a62 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:29:18 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I1bc902da81dca12243eb59f1aa73df953e691e5c
+---
+ .../netstatsclient/src/proxy/net_stats_service_proxy.cpp      | 4 ++--
+ .../src/netsys/dnsresolv/dns_quality_diag.cpp                 | 2 +-
+ .../netsyscontroller/src/netsys_controller_service_impl.cpp   | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/frameworks/native/netstatsclient/src/proxy/net_stats_service_proxy.cpp b/frameworks/native/netstatsclient/src/proxy/net_stats_service_proxy.cpp
+index 7360449c..590b7043 100644
+--- a/frameworks/native/netstatsclient/src/proxy/net_stats_service_proxy.cpp
++++ b/frameworks/native/netstatsclient/src/proxy/net_stats_service_proxy.cpp
+@@ -412,7 +412,7 @@ int32_t NetStatsServiceProxy::GetCookieRxBytes(uint64_t &stats, uint64_t cookie)
+         return NETMANAGER_ERR_WRITE_DESCRIPTOR_TOKEN_FAIL;
+     }
+     if (!data.WriteUint64(cookie)) {
+-        NETMGR_LOG_E("proxy cookie%{public}llu", cookie);
++        NETMGR_LOG_E("proxy cookie%{public}lu", cookie);
+         return NETMANAGER_ERR_WRITE_DATA_FAIL;
+     }
+ 
+@@ -438,7 +438,7 @@ int32_t NetStatsServiceProxy::GetCookieTxBytes(uint64_t &stats, uint64_t cookie)
+         return NETMANAGER_ERR_WRITE_DESCRIPTOR_TOKEN_FAIL;
+     }
+     if (!data.WriteUint64(cookie)) {
+-        NETMGR_LOG_E("proxy cookie%{public}llu", cookie);
++        NETMGR_LOG_E("proxy cookie%{public}lu", cookie);
+         return NETMANAGER_ERR_WRITE_DATA_FAIL;
+     }
+ 
+diff --git a/services/netmanagernative/src/netsys/dnsresolv/dns_quality_diag.cpp b/services/netmanagernative/src/netsys/dnsresolv/dns_quality_diag.cpp
+index 96fcb85b..7aeb9ef5 100644
+--- a/services/netmanagernative/src/netsys/dnsresolv/dns_quality_diag.cpp
++++ b/services/netmanagernative/src/netsys/dnsresolv/dns_quality_diag.cpp
+@@ -235,7 +235,7 @@ int32_t DnsQualityDiag::send_dns_report()
+     if (report_.size() > 0) {
+         std::list<NetsysNative::NetDnsResultReport> reportSend(report_);
+         report_.clear();
+-        NETNATIVE_LOG_D("send_dns_report (%{public}u)", reportSend.size());
++        NETNATIVE_LOG_D("send_dns_report (%{public}lu)", reportSend.size());
+         for (auto cb: resultListeners_) {
+             NETNATIVE_LOGI("send_dns_report cb)");
+             cb->OnDnsResultReport(reportSend.size(), reportSend);
+diff --git a/services/netsyscontroller/src/netsys_controller_service_impl.cpp b/services/netsyscontroller/src/netsys_controller_service_impl.cpp
+index 8ebbdcda..56777a2f 100644
+--- a/services/netsyscontroller/src/netsys_controller_service_impl.cpp
++++ b/services/netsyscontroller/src/netsys_controller_service_impl.cpp
+@@ -739,7 +739,7 @@ int32_t NetsysControllerServiceImpl::UnregisterDnsHealthCallback(const sptr<INet
+ 
+ int32_t NetsysControllerServiceImpl::GetCookieStats(uint64_t &stats, uint32_t type, uint64_t cookie)
+ {
+-    NETMGR_LOG_D("NetsysControllerServiceImpl::GetCookieStats: type=%{public}d cookie=%{public}llu", type, cookie);
++    NETMGR_LOG_D("NetsysControllerServiceImpl::GetCookieStats: type=%{public}d cookie=%{public}lu", type, cookie);
+     return netsysClient_.GetCookieStats(stats, type, cookie);
+ }
+ } // namespace NetManagerStandard
+-- 
+2.34.1
+

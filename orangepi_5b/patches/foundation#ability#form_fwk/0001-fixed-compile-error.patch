@@ -1,0 +1,26 @@
+From 9543580ebba068495fd61e7dfe9c0c725d072627 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:06:28 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I45807db47b14280cf42047ffd5b1e9032ea809df
+---
+ frameworks/js/napi/form_observer/js_form_observer.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/frameworks/js/napi/form_observer/js_form_observer.cpp b/frameworks/js/napi/form_observer/js_form_observer.cpp
+index 973792f7..30fa5204 100644
+--- a/frameworks/js/napi/form_observer/js_form_observer.cpp
++++ b/frameworks/js/napi/form_observer/js_form_observer.cpp
+@@ -90,7 +90,7 @@ private:
+         HILOG_DEBUG("argc is %{public}zu, param range is [%{public}zu, %{public}zu]",
+             argc, minParamNum, maxParamNum);
+         if (argc > maxParamNum || argc < minParamNum) {
+-            HILOG_ERROR("invalid param number %{public}d.", argc);
++            HILOG_ERROR("invalid param number %{public}lu.", argc);
+             std::string errMsg = "[" + std::to_string(minParamNum) + ", " + std::to_string(maxParamNum) + "]";
+             NapiFormUtil::ThrowParamNumError(env, std::to_string(argc), errMsg);
+             return false;
+-- 
+2.34.1
+

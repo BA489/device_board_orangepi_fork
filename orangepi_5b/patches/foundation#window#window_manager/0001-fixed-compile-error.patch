@@ -1,0 +1,39 @@
+From cc42e2d6c028b7b6f62e7e9deb0f5be5a39c372a Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:21:23 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I5a4d5e65c1fa7ec11509e65b814bbab6adeac372
+---
+ bundle.json                    | 1 +
+ wm/src/window_session_impl.cpp | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/bundle.json b/bundle.json
+index 9a81c1e4d..eea017279 100755
+--- a/bundle.json
++++ b/bundle.json
+@@ -18,6 +18,7 @@
+       ],
+       "features": [
+         "window_manager_feature_coverage = false",
++        "window_manager_dayu200_resource_config",
+         "window_manager_dayu210_resource_config",
+         "window_manager_feature_subscribe_motion",
+         "window_manager_feature_tp_enable"
+diff --git a/wm/src/window_session_impl.cpp b/wm/src/window_session_impl.cpp
+index fd7fe3bed..838d123e5 100644
+--- a/wm/src/window_session_impl.cpp
++++ b/wm/src/window_session_impl.cpp
+@@ -307,7 +307,7 @@ void WindowSessionImpl::SetDefaultDisplayIdIfNeed()
+             SingletonContainer::Get<DisplayManager>().GetDefaultDisplayId();
+         defaultDisplayId = (defaultDisplayId == DISPLAY_ID_INVALID)? 0 : defaultDisplayId;
+         property_->SetDisplayId(defaultDisplayId);
+-        WLOGFI("Reset displayId to %{public}llu", defaultDisplayId);
++        WLOGFI("Reset displayId to %{public}lu", defaultDisplayId);
+     }
+ }
+ 
+-- 
+2.34.1
+

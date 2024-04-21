@@ -1,0 +1,61 @@
+From c43a18809d0c8bc632a2fb74279312ebbc747e6d Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 16:43:48 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: I2bec27ced63a42cd5a5da1c88a7be579a94e255c
+---
+ adapter/service/idl/src/hiview_service_ability_proxy.cpp | 2 +-
+ adapter/service/idl/src/hiview_service_ability_stub.cpp  | 4 ++--
+ base/event_store/utility/reader/sys_event_doc_reader.cpp | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/adapter/service/idl/src/hiview_service_ability_proxy.cpp b/adapter/service/idl/src/hiview_service_ability_proxy.cpp
+index 34f4070a..d4d89933 100644
+--- a/adapter/service/idl/src/hiview_service_ability_proxy.cpp
++++ b/adapter/service/idl/src/hiview_service_ability_proxy.cpp
+@@ -65,7 +65,7 @@ int32_t HiviewServiceAbilityProxy::List(const std::string& logType, std::vector<
+         HIVIEW_LOGE("ReadBulkData failed");
+         return HiviewNapiErrCode::ERR_DEFAULT;
+     }
+-    HIVIEW_LOGW("file list num:%{public}d", fileInfos.size());
++    HIVIEW_LOGW("file list num:%{public}lu", fileInfos.size());
+     return ERR_OK;
+ }
+ 
+diff --git a/adapter/service/idl/src/hiview_service_ability_stub.cpp b/adapter/service/idl/src/hiview_service_ability_stub.cpp
+index 1052b131..954751a0 100644
+--- a/adapter/service/idl/src/hiview_service_ability_stub.cpp
++++ b/adapter/service/idl/src/hiview_service_ability_stub.cpp
+@@ -201,7 +201,7 @@ int32_t HiviewServiceAbilityStub::HandleListRequest(MessageParcel& data, Message
+     if (ret != ERR_OK) {
+         return ret;
+     }
+-    HIVIEW_LOGW("file list num:%{public}d", fileInfos.size());
++    HIVIEW_LOGW("file list num:%{public}lu", fileInfos.size());
+     sptr<Ashmem> ashmem = AshMemoryUtils::GetAshmem(ASH_MEM_NAME, ASH_MEM_SIZE);
+     if (ashmem == nullptr) {
+         HIVIEW_LOGE("ge ashmem failed.");
+@@ -345,4 +345,4 @@ int32_t HiviewServiceAbilityStub::HandleRecoverTraceRequest(MessageParcel& data,
+     return WriteTracePracelableToMessage(reply, ret);
+ }
+ } // namespace HiviewDFX
+-} // namespace OHOS
+\ No newline at end of file
++} // namespace OHOS
+diff --git a/base/event_store/utility/reader/sys_event_doc_reader.cpp b/base/event_store/utility/reader/sys_event_doc_reader.cpp
+index 5e5bd5c9..c8dc7124 100644
+--- a/base/event_store/utility/reader/sys_event_doc_reader.cpp
++++ b/base/event_store/utility/reader/sys_event_doc_reader.cpp
+@@ -157,7 +157,7 @@ int SysEventDocReader::ReadPages(const DocQuery& query, EntryQueue& entries, int
+                     pageIndex, docPath_.c_str());
+                 break;
+             }
+-            HIVIEW_LOGD("read the next page index=%{public}zu, file=%{public}s", pageIndex, docPath_.c_str());
++            HIVIEW_LOGD("read the next page index=%{public}u, file=%{public}s", pageIndex, docPath_.c_str());
+             continue;
+         }
+         TryToAddEntry(content, contentSize, query, entries, num);
+-- 
+2.34.1
+

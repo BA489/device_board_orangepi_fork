@@ -1,0 +1,28 @@
+From f105b4011894f142693c8bc6eea817643fe90288 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Sun, 21 Apr 2024 17:00:47 +0800
+Subject: [PATCH] fixed compile error
+
+Change-Id: Ifba0f20a7a314b60502906ba23e04b42b117a024
+---
+ adapter/appspawn_nweb.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/adapter/appspawn_nweb.cpp b/adapter/appspawn_nweb.cpp
+index e68813a..e29e5f1 100644
+--- a/adapter/appspawn_nweb.cpp
++++ b/adapter/appspawn_nweb.cpp
+@@ -46,8 +46,10 @@ struct RenderProcessNode {
+ 
+ namespace {
+     constexpr int32_t RENDER_PROCESS_MAX_NUM = 16;
++#if defined(webview_arm)
+     constexpr int32_t RETRY_MAX_TIMES = 60;
+     constexpr int32_t WAIT_NWEB_LIB_MARGIN = 5;
++#endif
+     std::map<int32_t, RenderProcessNode> g_renderProcessMap;
+     std::mutex g_mutex;
+     void *g_nwebRenderHandle = nullptr;
+-- 
+2.34.1
+
