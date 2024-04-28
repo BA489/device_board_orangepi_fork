@@ -1,0 +1,26 @@
+From 7c99be023b569cf732a0ef67fe1feeded02e04b5 Mon Sep 17 00:00:00 2001
+From: nixingfeng <872850707@qq.com>
+Date: Mon, 29 Apr 2024 00:09:29 +0800
+Subject: [PATCH] disable prebuild navigation bar
+
+Change-Id: Ia0142d0f20d6e1b98acfeb590483003a895a71b0
+---
+ BUILD.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/BUILD.gn b/BUILD.gn
+index 4b6bd3b..2b5eb8c 100755
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -302,7 +302,7 @@ group("hap") {
+     "//applications/standard/hap:mms_hap",
+     "//applications/standard/hap:mobileDataSettings_hap",
+     "//applications/standard/hap:music_demo_hap",
+-    "//applications/standard/hap:navigationBar_hap",
++    # "//applications/standard/hap:navigationBar_hap",
+     "//applications/standard/hap:note_hap",
+     "//applications/standard/hap:notificationManagement_hap",
+     "//applications/standard/hap:photos_hap",
+-- 
+2.34.1
+

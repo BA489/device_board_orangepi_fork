@@ -81,6 +81,20 @@ ohos_prebuilt_etc("settings_hap") {
   subsystem_name = "applications"
 }
 
+ohos_prebuilt_etc("navigationbar_hap") {
+  source = "hap/SystemUI-NavigationBar.hap"
+  module_install_dir = "app/com.ohos.systemui"
+  part_name = "device_orangepi_5b"
+  subsystem_name = "applications"
+}
+
+ohos_prebuilt_etc("f-oh_hap") {
+  source = "hap/F-OH.hap"
+  module_install_dir = "app/org.ohosdev.foh"
+  part_name = "device_orangepi_5b"
+  subsystem_name = "applications"
+}
+
 group("resources") {
   deps = [
     ":modetest",
@@ -92,5 +106,7 @@ group("resources") {
     ":launcher_hap",
     ":launcher_settings_hap",
     ":settings_hap",
+    ":navigationbar_hap",
+    ":f-oh_hap",
   ]
 }
